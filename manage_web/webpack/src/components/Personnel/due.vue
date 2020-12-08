@@ -28,6 +28,7 @@
           <el-col :span="4">
             <el-select
               filterable
+              clearable
               @clear="loadUserList()"
               @change="getUserlist()"
               v-model="unitId"
@@ -43,9 +44,6 @@
             </el-select>
           </el-col>
           <el-col :span="3">
-            <!-- <el-button @click="showAddUserDia()" type="primary">
-          <i style="padding-right:10px" class="el-icon-plus"></i>新增
-            </el-button>-->
           </el-col>
         </el-col>
       </el-row>
@@ -77,14 +75,6 @@
             </template>
           </el-table-column>
 
-          <!-- <el-table-column show-overflow-tooltip prop label="创建时间">
-            <template slot-scope="socpe">{{socpe.row.vestingDateStart | fmtdate}}</template>
-          </el-table-column>
-
-          <el-table-column show-overflow-tooltip prop label="修改时间">
-            <template slot-scope="socpe">{{socpe.row.vestingDateEnd | fmtdate}}</template>
-          </el-table-column>-->
-
           <el-table-column show-overflow-tooltip prop="unitPhone" width="140" label="单位固定电话"></el-table-column>
 
           <el-table-column prop="licence" label="特种设备许可证号" width="180"></el-table-column>
@@ -95,11 +85,6 @@
             <template slot-scope="socpe"><p style="background-color:red;color:white;padding: 10px 5px;">{{socpe.row.unitChangeTime | fmtdate}}</p></template>
           </el-table-column>
           <el-table-column prop="phone" label="负责人联系电话" width="140"></el-table-column>
-          <!-- <el-table-column show-overflow-tooltip prop="isUse" label="是否超期">
-             <p v-if="userlist[scope.$index].belongStype==0">车用</p>
-              <p v-if="userlist[scope.$index].belongStype==1">液化</p>
-            
-          </el-table-column>-->
 
           <el-table-column show-overflow-tooltip prop="bottleType" label="所属类型">
             <template slot-scope="scope">
@@ -109,41 +94,8 @@
               <p v-if="userlist[scope.$index].bottleType==4">所有类型</p>
             </template>
           </el-table-column>
-
-          <!-- 表格操作 -->
-          <!-- <el-table-column prop width="140" label="操 作">
-            <template slot-scope="scope">
-             
-
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="查看"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="primary"
-                  size="mini"
-                  title="查看"
-                  plain
-                  icon="el-icon-message"
-                  @click="showEdituser(scope.row)"
-                ></el-button>
-              </el-tooltip>
-            </template>
-          </el-table-column>-->
         </el-table>
       </template>
-      <!-- 4.分页 -->
-      <!-- 》该接口支持分页 url参数中有pagenum，pagesize
-          @size-change 每页显示条数变化时触发
-          @current-change当前页改变时触发
-          :current-page 设置当前页是第几页
-           :page-sizes="[5, 10, 15, 20]"每页多少条的数据组
-           :page-size="5"设置显示多少条
-           :total="400"分页总数
-      -->
       <el-pagination
         style="padding:5px 15px 15px 15px;display:flex; justify-content: flex-end;"
         background
@@ -173,22 +125,12 @@
           <el-table-column type="index" label="序号" width="70" show-overflow-tooltip></el-table-column>
           <el-table-column show-overflow-tooltip prop="vestingUnit" label="单位名称"></el-table-column>
           <el-table-column show-overflow-tooltip prop="vestingAddress" label="详细地址"></el-table-column>
-
           <el-table-column show-overflow-tooltip prop="vestingType" label="监督机构"></el-table-column>
           <el-table-column show-overflow-tooltip prop="unitIssueTime" label="发证日期"></el-table-column>
           <el-table-column show-overflow-tooltip prop="unitChangeTime" label="换证日期"></el-table-column>
-
-
           <el-table-column show-overflow-tooltip prop="unitFixedLine" width="140" label="单位固定电话"></el-table-column>
-
           <el-table-column prop="adminNo" label="特种设备许可证号" width="180"></el-table-column>
           <el-table-column prop="personCharge" label="负责人电话" width="140"></el-table-column>
-          <!-- <el-table-column show-overflow-tooltip prop="isUse" label="是否超期">
-             <p v-if="userlist[scope.$index].belongStype==0">车用</p>
-              <p v-if="userlist[scope.$index].belongStype==1">液化</p>
-            
-          </el-table-column>-->
-
           <el-table-column show-overflow-tooltip prop="belongStype" label="所属类型">
             <template slot-scope="scope">
               <p v-if="messageUserForm[scope.$index].belongStype==0">车用</p>
@@ -256,13 +198,6 @@ export default {
       ],
       typeouts: [],
       unitId: ""
-      // 分配角色,
-      //   currRoleId: -1,
-      //   分配当前用户id
-      // currusrId: -1,
-      //   roles: [],
-      //   currUsername: ""
-      //   保存所有角色数据
     };
   },
 
@@ -286,8 +221,6 @@ export default {
       }
     },
     async getUserlist() {
-      // this.unitId = localStorage.getItem("unitId");
-      // this.bottleType = sessionStorage.getItem("bottleType");
       const res = await this.$http.get(
         //Integer bottleType, Integer pageSize, Integer currPage
         `unit/warning/enabled?bottleType=${this.bottleType}&currPage=${this.currPage}&pageSize=${this.pageSize}&unitId=${this.unitId}  `

@@ -462,9 +462,6 @@ export default {
       // date: new Date()
     };
   },
-  // components:{
-  //   liquefied
-  // },
   created() {
     // this.getUserlist()
   },
@@ -880,7 +877,7 @@ export default {
           console.log(_that.treeMap.childNode.name);
           $.ajaxSettings.async = false; //将$.getJSON改为同步
           $.getJSON(
-            `http://125.75.8.53:8081/chinese/area/${
+            `http://39.98.74.46:8081/chinese/area/${
               _that.cityMap[childNode.parent]
             }`,
             (data) => {
@@ -898,7 +895,7 @@ export default {
         ) {
           $.ajaxSettings.async = false; //将$.getJSON改为同步
           $.getJSON(
-            `http://125.75.8.53:8081/chinese/area/${
+            `http://39.98.74.46:8081/chinese/area/${
               _that.cityMap[childNode.parent]
             }`,
             (data) => {

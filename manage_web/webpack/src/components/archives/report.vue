@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div style="background:white;width:99.1%;padding-left:15px">
@@ -1038,7 +1039,7 @@ export default {
       total: -1,
       currpage: 1,
       pageSize: 10,
-      page: 1,
+      page:1,
       reportStatus: "",
       options: [
         {
@@ -1470,6 +1471,10 @@ export default {
       },
     };
   },
+  created() {
+    this.getUserlist();
+    // this.dialogFormVisiblreport()
+  },
   watch: {
     dialogFormVisibleEdit: function (val, oldVla) {
       this.$refs["editUserForm"].resetFields();
@@ -1875,18 +1880,33 @@ export default {
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
       const res = await this.$http.get(
-        `/cylinder/select?pageSize=${this.pageSize}&currpage=${this.page}&gasId=${this.uegId}&reportStatus=${this.reportStatus}&appId=${this.appId}&buildingUser=${this.buildingUser}`
+        `/cylinder/select?pageSize=${this.pageSize}&currpage=1&gasId=${this.uegId}&reportStatus=${this.reportStatus}&appId=${this.appId}&buildingUser=${this.buildingUser}`
       );
       console.log(res);
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
+      console.log(this.reportStatus);
     },
 
     //分页功能
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       // 1.每页显示条数的改变
-      this.pageSize = val;
+      console.log(this.reportStatus);
+       this.pageSize = val;
+      this.getUserlist()
+      // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
+      if(this.uegId =="" || this.reportStatus=="" || this.appId=="" || this.buildingUser==""){
+        console.log("----------------------------");
+       
+        this.getUserlist()
+      }else{
+        debugger;
+        console.log("+++++++++++++++++++++++");
+       
+        this.searchUser()
+      } 
+     
       // 回到第一页
       this.currpage = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
@@ -1900,17 +1920,14 @@ export default {
     },
     async getUserlist() {
       const res = await this.$http.get(
-        `/cylinder/select?pageSize=${this.pageSize}&currpage=${this.currpage}&gasId=${this.uegId}`
+        `/cylinder/select?pageSize=${this.pageSize}&currpage=${this.currpage}&gasId=${this.uegId}&reportStatus=${this.reportStatus}&appId=${this.appId}&buildingUser=${this.buildingUser}`
       );
       console.log(res);
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
     },
   },
-  created() {
-    this.getUserlist();
-    // this.dialogFormVisiblreport()
-  },
+  
 };
 </script>
 <style scoped>

@@ -42,6 +42,7 @@
                 placeholder="加气时间"
                 value-format="yyyy-MM-dd"
                 v-model="createTime"
+                @input="searchUser()"
               ></el-date-picker>
             </el-col>
 
@@ -164,7 +165,12 @@ export default {
       pageSize: 10,
       // dialogFormVisibleEdit: false,
       // dialogFormVisibleRoleshow: false,
-      //生成一个文档
+      
+    };
+  },
+
+  methods: {
+    //生成一个文档
       async downtemplatee() {
         this.loadingbut = true;
         this.loadingbuttext = "加载中...";
@@ -233,11 +239,7 @@ export default {
             this.loadingbut = false;
             this.loadingbuttext = "生成一个excel文档";
           });
-      }
-    };
-  },
-
-  methods: {
+      },
     //清空搜索框搜索数据 点击清楚按钮清除数据重新发送请求
     loadUserList() {
       this.getUserlist();
@@ -247,6 +249,7 @@ export default {
       const res = await this.$http.get(
         `/pc-mobile/record/findPage?rows=${this.pageSize}&page=1&gunId=${this.gunId}&controlId=${this.controlId}&startTime=${this.createTime}&endTime=${this.createTime2}`
       );
+      console.log(res);
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
       console.log(this.userlist);

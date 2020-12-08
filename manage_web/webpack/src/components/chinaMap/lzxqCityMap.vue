@@ -290,7 +290,7 @@ export default {
     }
 
 }
-</script scoped>
+</script>
 
 <style scoped>
  .lzxqCityCon{

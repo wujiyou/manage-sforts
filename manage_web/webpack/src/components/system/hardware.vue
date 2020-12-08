@@ -210,7 +210,7 @@
         :visible.sync="dialogFormVisiblegongye"
       >
         <el-form :model="formgy">
-          <el-form-item label="control(控制器)：" label-width="200px" prop="email">
+          <!-- <el-form-item label="control(控制器)：" label-width="200px" prop="email">
             <el-input v-model="formgy.controlId" autocomplete="off"></el-input>
             <span>(多个控制器用英文逗号隔开)</span>
           </el-form-item>
@@ -218,7 +218,7 @@
           <el-form-item label="手持机编号：" label-width="200px" prop="userId">
             <el-input v-model="formgy.userId" autocomplete="off"></el-input>
             <span>（多个手持机用英文逗号隔开）</span>
-          </el-form-item>
+          </el-form-item> -->
 
           <el-form-item label="*手持机MEID：" label-width="200px" prop="macId">
             <el-input v-model="formgy.macId" autocomplete="off"></el-input>
@@ -431,11 +431,11 @@ export default {
         unitId: "",
       },
       formgy: {
-        controlId: "",
+        // controlId: "",
         departId: "",
         gunId: "",
         macId: "",
-        userId: "",
+        // userId: "",
         id: "",
         unitId: "",
         medium: "", //介质

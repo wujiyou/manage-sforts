@@ -2047,6 +2047,10 @@ export default {
     async function2(val) {
       this.code = val;
       console.log(this.code);
+      this.areaCode=""
+      this.cityCode=""
+      this.form.areaCode=""
+      this.form.cityCode=""
       const res = await this.$http.get(`/chinese/city/${this.code}`);
       console.log(res);
       this.CityId = res.data.data;
@@ -2055,6 +2059,8 @@ export default {
     // 区域
     async function1(val) {
       this.Id = val;
+      this.areaCode=""
+      this.form.areaCode=""
       const res = await this.$http.get(`/chinese/area/${this.Id}`);
       console.log(res);
       this.AreaId = res.data.data;

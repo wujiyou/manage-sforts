@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="background:white;width:99.1%;padding-left:15px">
-      <my-bread level1="单位登记" level2="单位登记" level3="监管机构"></my-bread>
+      <my-bread level1="单位登记" level2="单位登记" level3="其他单位"></my-bread>
     </div>
     <el-card class="box-card" style="margin:20px 20px 0 20px;">
       <!--搜索  -->

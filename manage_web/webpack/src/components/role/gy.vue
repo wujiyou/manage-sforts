@@ -1,20 +1,32 @@
 <template>
   <div>
-    <div style="background:white;width:99.1%;padding-left:15px">
-      <my-bread level1="综合查询" level2="工业气瓶" level3="气瓶充装记录"></my-bread>
+    <div style="background: white; width: 99.1%; padding-left: 15px">
+      <my-bread
+        level1="综合查询"
+        level2="工业气瓶"
+        level3="气瓶充装记录"
+      ></my-bread>
     </div>
-    <el-card class="box-card" style="margin:20px 20px 0 20px;">
+    <el-card class="box-card" style="margin: 20px 20px 0 20px">
       <el-row>
         <el-col :span="22">
           <el-col :span="24">
-            <h5 style="border-bottom:1px solid #ece8e8;padding-bottom:15px;padding-left:15px">查询信息</h5>
+            <h5
+              style="
+                border-bottom: 1px solid #ece8e8;
+                padding-bottom: 15px;
+                padding-left: 15px;
+              "
+            >
+              查询信息
+            </h5>
           </el-col>
 
-          <el-col style="padding-left:15px" :span="24">
+          <el-col style="padding-left: 15px" :span="24">
             <el-col :span="4">
               <el-input
                 size="small"
-                style=" width: 100%;"
+                style="width: 100%"
                 @clear="loadUserList()"
                 clearable
                 class="input-serach"
@@ -23,10 +35,10 @@
               ></el-input>
             </el-col>
 
-            <el-col style="padding-left:30px" :span="4">
+            <el-col style="padding-left: 30px" :span="4">
               <el-input
                 size="small"
-                style=" width: 100%;"
+                style="width: 100%"
                 @clear="loadUserList()"
                 clearable
                 class="input-serach"
@@ -35,19 +47,20 @@
               ></el-input>
             </el-col>
 
-            <el-col style="padding-left:30px" :span="4">
+            <el-col style="padding-left: 30px" :span="4">
               <el-date-picker
                 size="small"
-                style=" width: 100%;"
+                style="width: 100%"
                 type="date"
                 placeholder="加气时间"
                 value-format="yyyy-MM-dd"
                 v-model="createTime"
+                @input="searchUser()"
               ></el-date-picker>
             </el-col>
 
-            <el-col style="padding-left:20px" class="line" :span="1">
-              <p style="margin-top:8px;">至</p>
+            <el-col style="padding-left: 20px" class="line" :span="1">
+              <p style="margin-top: 8px">至</p>
             </el-col>
             <el-col :span="4">
               <el-date-picker
@@ -56,19 +69,20 @@
                 value-format="yyyy-MM-dd"
                 v-model="endTime"
                 size="small"
-                style=" width: 100%;"
+                style="width: 100%"
                 @input="searchUser()"
               ></el-date-picker>
             </el-col>
 
-            <el-col style="padding-left:30px" :span="4">
+            <el-col style="padding-left: 30px" :span="4">
               <el-button
                 size="small"
-                style=" width: 100%;"
+                style="width: 100%"
                 @click="searchUser()"
                 class="el_button"
                 icon="el-icon-search"
-              >搜索</el-button>
+                >搜索</el-button
+              >
             </el-col>
           </el-col>
         </el-col>
@@ -82,10 +96,16 @@
 
       <el-col :span="24">
         <p
-          style="width:100%;height:1px;background:rgb(236, 232, 232);margin:20px 0px 0px 0px;z-index:999"
+          style="
+            width: 100%;
+            height: 1px;
+            background: rgb(236, 232, 232);
+            margin: 20px 0px 0px 0px;
+            z-index: 999;
+          "
         ></p>
       </el-col>
-      <el-col style="margin-bottom:5px;margin-top:5px" :span="24">
+      <el-col style="margin-bottom: 5px; margin-top: 5px" :span="24">
         <el-col :span="21">&nbsp;</el-col>
 
         <el-col :span="2">
@@ -93,10 +113,11 @@
             type="success"
             plain
             size="small"
-            style="margin-left:10px;font-size:13px"
+            style="margin-left: 10px; font-size: 13px"
             @click="downtemplatee()"
           >
-            <i style="padding-right:10px;" class="el-icon-download"></i>批量下载excel
+            <i style="padding-right: 10px" class="el-icon-download"></i
+            >批量下载excel
           </el-button>
         </el-col>
       </el-col>
@@ -104,36 +125,89 @@
       <template>
         <el-table
           border
-          :row-style="{height:'40px'}"
-          :cell-style="{padding:'0px'}"
+          :row-style="{ height: '40px' }"
+          :cell-style="{ padding: '0px' }"
           :data="userlist"
-          style="width: 100%;margin:20px 0px;padding-bottom:40px"
+          style="width: 100%; margin: 20px 0px; padding-bottom: 40px"
         >
-          <el-table-column type="index" label="序号" width="70"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="unitName" label="充装站名称" width="200"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="regId" label="登记证号"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="gasId" label="气瓶编号"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="appId" label="标签号"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="gunId" label="充装枪号"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="medium" label="充装介质"></el-table-column>
-          <el-table-column sortable show-overflow-tooltip prop="createTime" label="充装时间">
+          <el-table-column
+            type="index"
+            label="序号"
+            width="70"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="unitName"
+            label="充装站名称"
+            width="200"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="regId"
+            label="登记证号"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="gasId"
+            label="气瓶编号"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="appId"
+            label="标签号"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="gunId"
+            label="充装枪号"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="medium"
+            label="充装介质"
+          ></el-table-column>
+          <el-table-column
+            sortable
+            show-overflow-tooltip
+            prop="createTime"
+            label="充装时间"
+          >
             <!-- <template slot-scope="socpe">{{socpe.row.createTime | fmtdate}}</template> -->
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="fillingVolume" label="充装量(kg)"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="userName" label="充装工"></el-table-column>
-          <el-table-column sortable show-overflow-tooltip prop="nextCheckData" label="下次检验时间">
-            <template slot-scope="socpe">{{socpe.row.nextCheckData | fmtdate}}</template>
+          <el-table-column
+            show-overflow-tooltip
+            prop="fillingVolume"
+            label="充装量(kg)"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="userName"
+            label="充装工"
+          ></el-table-column>
+          <el-table-column
+            sortable
+            show-overflow-tooltip
+            prop="nextCheckData"
+            label="下次检验时间"
+          >
+            <template slot-scope="socpe">{{
+              socpe.row.nextCheckData | fmtdate
+            }}</template>
           </el-table-column>
         </el-table>
       </template>
 
       <el-pagination
-        style="padding:5px 15px 15px 15px;display:flex; justify-content: flex-end;"
+        style="
+          padding: 5px 15px 15px 15px;
+          display: flex;
+          justify-content: flex-end;
+        "
         background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currPage"
-        :page-sizes="[10,15,20,25,30]"
+        :page-sizes="[10, 15, 20, 25, 30]"
         :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -156,102 +230,112 @@ export default {
       currPage: 1,
       page: 1,
       pageSize: 10,
-      //生成一个文档
-      async downtemplatee() {
-        if (this.userlist.length === 0) {
-          this.$message({
-            type: "error",
-            message: "数据为空，下载失败"
-          });
-        } else {
-          this.loadingbut = true;
-          this.loadingbuttext = "加载中...";
-          var arr = {
-            gasId: this.gasId,
-            gunId: this.gunId,
-            createTime: this.createTime,
-            endTime: this.endTime
-          };
-          console.log(arr);
-          const res = await this.$http
-            .post(
-              `/public/gas/industrial/creat/record`,
-              arr,
-              // { headers: "application/x-download" },
-              { responseType: "blob" }
-            )
-            .then(response => {
-              console.log(response);
-              if (response.status === 200) {
-                this.getUserlist();
-                // 提示
-                this.$message({
-                  type: "success",
-                  message: "下载成功"
-                });
-                console.log(this.datas);
-                this.loadingbut = false;
-                this.loadingbuttext = "生成一个excel文档";
-                const blob = new Blob([response.data], {
-                  type: "application/msword"
-                });
-                const fileName = "气瓶基本信息.xlsx";
 
-                const elink = document.createElement("a");
-
-                elink.download = fileName;
-
-                elink.style.display = "none";
-
-                elink.href = URL.createObjectURL(blob);
-
-                document.body.appendChild(elink);
-
-                elink.click();
-
-                URL.revokeObjectURL(elink.href); // 释放URL 对象
-                document.body.removeChild(elink);
-                this.datas = [];
-                console.log(this.datas);
-              } else if (res.data.code == 201) {
-                this.$message({
-                  type: "error",
-                  message: "生成失败"
-                });
-                this.loadingbut = false;
-                this.loadingbuttext = "生成一个excel文档";
-              }
-            })
-            .catch(err => {
-              this.$message({
-                type: "error",
-                message: "生成失败"
-              });
-              //         _toastr.error(err)
-              this.loadingbut = false;
-              this.loadingbuttext = "生成一个excel文档";
-            });
-        }
-      }
       // dialogFormVisibleEdit: false,
       // dialogFormVisibleRoleshow: false,
     };
   },
 
   methods: {
+    //生成一个文档
+    async downtemplatee() {
+      if (this.userlist.length === 0) {
+        this.$message({
+          type: "error",
+          message: "数据为空，下载失败",
+        });
+      } else {
+        this.loadingbut = true;
+        this.loadingbuttext = "加载中...";
+        var arr = {
+          gasId: this.gasId,
+          gunId: this.gunId,
+          createTime: this.createTime,
+          endTime: this.endTime,
+        };
+        console.log(arr);
+        const res = await this.$http
+          .post(
+            `/public/gas/industrial/creat/record`,
+            arr,
+            // { headers: "application/x-download" },
+            { responseType: "blob" }
+          )
+          .then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+              this.getUserlist();
+              // 提示
+              this.$message({
+                type: "success",
+                message: "下载成功",
+              });
+              console.log(this.datas);
+              this.loadingbut = false;
+              this.loadingbuttext = "生成一个excel文档";
+              const blob = new Blob([response.data], {
+                type: "application/msword",
+              });
+              const fileName = "气瓶基本信息.xlsx";
+
+              const elink = document.createElement("a");
+
+              elink.download = fileName;
+
+              elink.style.display = "none";
+
+              elink.href = URL.createObjectURL(blob);
+
+              document.body.appendChild(elink);
+
+              elink.click();
+
+              URL.revokeObjectURL(elink.href); // 释放URL 对象
+              document.body.removeChild(elink);
+              this.datas = [];
+              console.log(this.datas);
+            } else if (res.data.code == 201) {
+              this.$message({
+                type: "error",
+                message: "生成失败",
+              });
+              this.loadingbut = false;
+              this.loadingbuttext = "生成一个excel文档";
+            }
+          })
+          .catch((err) => {
+            this.$message({
+              type: "error",
+              message: "生成失败",
+            });
+            //         _toastr.error(err)
+            this.loadingbut = false;
+            this.loadingbuttext = "生成一个excel文档";
+          });
+      }
+    },
     //清空搜索框搜索数据 点击清楚按钮清除数据重新发送请求
     loadUserList() {
       this.getUserlist();
     },
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
+      if(this.createTime==null || this.endTime==null) this.createTime='',this.endTime=''
       const res = await this.$http.get(
         `/public/gas/industrial/list?pageSize=${this.pageSize}&currPage=${this.page}&gunId=${this.gunId}&gasId=${this.gasId}&createTime=${this.createTime}&endTime=${this.endTime}`
       );
-      this.userlist = res.data.data.list;
-      this.total = res.data.data.totalCount;
-      console.log(this.userlist);
-      this.currPage = 1;
+      console.log(res);
+      if (res.data.data == null) {
+        this.$message({
+          type: "warning",
+          message: res.data.msg,
+        });
+      } else {
+        this.userlist = res.data.data.list;
+        this.total = res.data.data.totalCount;
+        // console.log(this.userlist);
+        this.currPage = 1;
+      }
     },
     //分页功能
     handleSizeChange(val) {
@@ -279,11 +363,11 @@ export default {
       console.log(res);
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
-    }
+    },
   },
   created() {
     this.getUserlist();
-  }
+  },
 };
 </script>
 <style scoped>

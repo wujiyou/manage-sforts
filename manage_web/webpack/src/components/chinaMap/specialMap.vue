@@ -1172,7 +1172,7 @@ export default {
         ) {
           console.log(_that.treeMap.childNode.name);
           $.getJSON(
-            `http://192.168.0.111:8081/chinese/area/${
+            `http://125.75.8.53:8081/chinese/area/${
               _that.cityMap[childNode.parent]
             }`,
             (data) => {
@@ -1189,7 +1189,7 @@ export default {
           _that.special.findIndex((v) => _that.treeMap.childNode.name == v) >= 0
         ) {
           $.getJSON(
-            `http://192.168.0.111:8081/chinese/area/${
+            `http://125.75.8.53:8081/chinese/area/${
               _that.cityMap[childNode.parent]
             }`,
             (data) => {

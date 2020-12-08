@@ -190,7 +190,12 @@ export default {
       wangye: [],
       // dialogFormVisibleEdit: false,
       // dialogFormVisibleRoleshow: false,
-      //生成一个文档
+      
+    };
+  },
+
+  methods: {
+    //生成一个文档
       async downtemplatee() {
         this.loadingbut = true;
         this.loadingbuttext = "加载中...";
@@ -248,11 +253,7 @@ export default {
             this.loadingbut = false;
             this.loadingbuttext = "生成一个excel文档";
           });
-      }
-    };
-  },
-
-  methods: {
+      },
     //清空搜索框搜索数据 点击清楚按钮清除数据重新发送请求
     loadUserList() {
       this.getUserlist();

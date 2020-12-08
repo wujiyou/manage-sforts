@@ -32,7 +32,7 @@
     <!-- 中间部分 -->
     <div class="content">
        <div class="left_12">
-          <img src="../../../static/images/bg18.png" :style="fanxian" />
+          <img src="../../../static/images/bg18.png" :style="imgNone" />
         </div>
       <!-- 中间头部 -->
       <div class="content_top">
@@ -207,12 +207,13 @@ export default {
       date: new Date(),
       fanjian: "",
       fanxianxian: "",
+      imgNone:"",
       fanxian: "",
       isnorMal: true,
       danwei: [],
       proAdress: "",
       heis: "height:30vh",
-      barChartSty: "width: 100%;height:22vh;",
+      barChartSty: "width:100%;height:22vh;",
       type: "",
       allShow: false,
       provincesAdress: "",
@@ -259,6 +260,7 @@ export default {
       this.fanjian = "font-size:14px;color:white";
       this.fanxianxian = "position: absolute;top:-0.8%;color: white;";
       this.fanxian = "position: absolute;top:-1%;color: white;";
+      this.imgNone = "display:none";
       this.isnorMal = false;
       this.heis = "height:15vh";
       this.barChartSty = "width: 100%;height:20vh;";

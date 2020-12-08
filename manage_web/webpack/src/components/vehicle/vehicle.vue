@@ -19,7 +19,7 @@
       <div class="leftCon">
         <div class="left_2">
           <div class="left_12">
-          <img src="../../../static/images/bg18.png"  />
+          <img src="../../../static/images/bg18.png" :style="imgNone" />
         </div>
           <div>
             <img class="img_da" src="./biao.png" alt />
@@ -184,6 +184,7 @@ export default {
       sty: "width:100%;height:42vh",
       barChartSty: "width: 100%;height:24vh;",
       doFontSize: "",
+      imgNone:"",
       img_bor: "",
       mar_lef: "",
       spen_1: "",
@@ -658,6 +659,7 @@ export default {
       this.ditus = "flex: 1.4;";
       this.daxiao = "80";
       this.daxiaos = "40%";
+      this.imgNone = "display:none";
       this.tdui = "margin:-10px auto";
       // this.samllFont="font-size: 8px; transform:scale(0.9);"
       this.isnorMal = false;

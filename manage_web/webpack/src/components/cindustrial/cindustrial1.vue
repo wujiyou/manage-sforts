@@ -271,904 +271,7 @@
         :total="total"
       ></el-pagination>
 
-      <!-- 对话框 -->
-      <!-- 添加对话框 -->
-      <el-dialog
-        title="添加用户"
-        top="2vh"
-        :visible.sync="dialogFormVisibleAdd"
-      >
-        <el-form :model="form" :rules="rules">
-          <el-col :span="24">
-            <el-col :span="6">
-              <el-form-item label="登记类别:" label-width="140px" prop="lei">
-                <el-select v-model="form.lei" placeholder="请选择">
-                  <el-option
-                    v-for="item in optionslei"
-                    :key="item.id"
-                    :label="item.lei"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <!-- <el-col :span="2"></el-col> -->
-            <el-col :span="18">
-              <el-col :span="8">
-                <el-form-item
-                  label="行政省份:"
-                  label-width="140px"
-                  prop="sheng"
-                >
-                  <!-- {{id}} -->
-                  <el-select
-                    v-model="form.sheng"
-                    @change="function2(form.sheng)"
-                    placeholder="请选择"
-                  >
-                    <el-option
-                      v-for="item in options"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.name"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="市级区域:" label-width="140px" prop="city">
-                  <el-select
-                    v-model="form.city"
-                    @change="function1(form.city)"
-                    placeholder="请选择"
-                  >
-                    <el-option
-                      v-for="item in level"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.name"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="区级:" label-width="140px" prop="country">
-                  <el-select v-model="form.country" placeholder="请选择">
-                    <el-option
-                      v-for="item in levels"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.name"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <h3 style="border-bottom: 1px solid #ece8e8; padding-bottom: 5px">
-              设备基本情况
-            </h3>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item label="设备代码:" label-width="140px" prop="sbdm">
-                <el-input v-model="form.sbdm" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item label="气瓶数量:" label-width="140px" prop="num">
-                <el-input v-model="form.num" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="监督机构名称:"
-                label-width="140px"
-                prop="supervisoryOrg"
-              >
-                <el-input
-                  v-model="form.supervisoryOrg"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="定期检验名称:"
-                label-width="140px"
-                prop="checkName"
-              >
-                <el-input
-                  v-model="form.checkName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <h3 style="border-bottom: 1px solid #ece8e8; padding-bottom: 5px">
-              设备使用情况
-            </h3>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="使用单位名称:"
-                label-width="140px"
-                prop="useName"
-              >
-                <el-select v-model="form.useName" placeholder="请选择">
-                  <el-option
-                    v-for="item in optionsuseName"
-                    :key="item.id"
-                    :label="item.usenames"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-                <!-- <el-input v-model="form.useName" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="使用单位地址:"
-                label-width="140px"
-                prop="address"
-              >
-                <el-input v-model="form.address" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="统一社会信用代码:"
-                label-width="140px"
-                prop="daima"
-              >
-                <el-input v-model="form.daima" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item label="邮政编码:" label-width="140px" prop="email">
-                <el-input v-model="form.email" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="投入使用日期:"
-                label-width="140px"
-                prop="initData"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="form.initData"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.initData" autocomplete="off"></!-->
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="固定电话:"
-                label-width="140px"
-                prop="mobilePhone"
-              >
-                <el-input
-                  v-model="form.mobilePhone"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="安全管理员:"
-                label-width="140px"
-                prop="useSafe"
-              >
-                <el-input v-model="form.useSafe" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="联系电话:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input v-model="form.telPhone" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <h3 style="border-bottom: 1px solid #ece8e8; padding-bottom: 5px">
-              登记信息
-            </h3>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="登记机关:"
-                label-width="140px"
-                prop="certification"
-              >
-                <el-input
-                  v-model="form.certification"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="登记人员:"
-                label-width="140px"
-                prop="certificationPerson"
-              >
-                <el-input
-                  v-model="form.certificationPerson"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item label="登记证号:" label-width="140px" prop="regId">
-                <el-input v-model="form.regId" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="登记日期:"
-                label-width="140px"
-                prop="cretificationDate"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="form.cretificationDate"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.cretificationDate" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-          </el-col>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisibleAdd = false">取 消</el-button>
-          <el-button type="primary" @click="AddUser()">确 定</el-button>
-        </div>
-      </el-dialog>
-
-      <!-- 编辑对话框 -->
-      <el-dialog title="编辑用户" :visible.sync="dialogFormVisibleEdit">
-        <el-form :model="editUserForm" :rules="rules">
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item label="登记证号:" label-width="140px" prop="regId">
-                <el-input
-                  v-model="editUserForm.regId"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item label="行政省份:" label-width="140px" prop="sheng">
-                <!-- {{id}} -->
-                <el-select
-                  v-model="editUserForm.sheng"
-                  @change="function2(editUserForm.sheng)"
-                  placeholder="请选择"
-                >
-                  <el-option
-                    v-for="item in options"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.name"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item label="区级:" label-width="140px" prop="city">
-                <el-select
-                  v-model="editUserForm.city"
-                  @change="function1(editUserForm.city)"
-                  placeholder="请选择"
-                >
-                  <el-option
-                    v-for="item in level"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.name"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="区级区域:"
-                label-width="140px"
-                prop="country"
-              >
-                <el-select v-model="editUserForm.country" placeholder="请选择">
-                  <el-option
-                    v-for="item in levels"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.name"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="登记类型:"
-                label-width="140px"
-                prop="regType"
-              >
-                <el-input
-                  v-model="editUserForm.regType"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item label="气瓶数量:" label-width="140px" prop="num">
-                <el-input
-                  v-model="editUserForm.num"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="监督机构名称:"
-                label-width="140px"
-                prop="supervisoryOrg"
-              >
-                <el-input
-                  v-model="editUserForm.supervisoryOrg"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="定期检验名称:"
-                label-width="140px"
-                prop="checkName"
-              >
-                <el-input
-                  v-model="editUserForm.checkName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="使用单位名称:"
-                label-width="140px"
-                prop="useName"
-              >
-                <el-input
-                  v-model="editUserForm.useName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="使用单位地址:"
-                label-width="140px"
-                prop="address"
-              >
-                <el-input
-                  v-model="editUserForm.address"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="投入使用日期:"
-                label-width="140px"
-                prop="initData"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="editUserForm.initData"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.initData" autocomplete="off"></!-->
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="固定电话:"
-                label-width="140px"
-                prop="mobilePhone"
-              >
-                <el-input
-                  v-model="editUserForm.mobilePhone"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="安全管理员:"
-                label-width="140px"
-                prop="useSafe"
-              >
-                <el-input
-                  v-model="editUserForm.useSafe"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="登记机关:"
-                label-width="140px"
-                prop="certification"
-              >
-                <el-input
-                  v-model="editUserForm.certification"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="登记日期:"
-                label-width="140px"
-                prop="cretificationDate"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="editUserForm.cretificationDate"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.cretificationDate" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">
-              <el-form-item
-                label="登记人员:"
-                label-width="140px"
-                prop="certificationPerson"
-              >
-                <el-input
-                  v-model="editUserForm.certificationPerson"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="11">
-              <el-form-item
-                label="联系电话:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="editUserForm.telPhone"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="11">&nbsp;</el-col>
-          </el-col>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisibleEdit = false">取 消</el-button>
-          <el-button type="primary" @click="EditUser()">确 定</el-button>
-        </div>
-      </el-dialog>
-
-      <!-- 查看信息 -->
-      <el-dialog
-        title="查看信息"
-        :visible.sync="dialogTableVisible"
-      ></el-dialog>
-
-      <!-- 登记证打印下载 -->
-      <el-dialog
-        width="80%"
-        top="3vh"
-        title="登记证预览下载"
-        :visible.sync="dengdialogFormVisible"
-      >
-        <el-form :model="dengform">
-          <el-col :span="24">
-            <h3 style="border-bottom: 1px solid #ece8e8; padding-bottom: 5px">
-              原始自带数据
-            </h3>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item label="登记证号:" label-width="140px" prop="regId">
-                <el-input
-                  v-model="dengform.regId"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="登记人员:"
-                label-width="140px"
-                prop="certificationPerson"
-              >
-                <el-input
-                  v-model="dengform.certificationPerson"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-              <!-- <el-form-item label="移动电话:" label-width="140px" prop="telPhone">
-              <el-input v-model="dengform.telPhone" autocomplete="off"></el-input>
-              </el-form-item>-->
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="登记类型:"
-                label-width="140px"
-                prop="regType"
-              >
-                <el-input
-                  v-model="dengform.regType"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item label="气瓶数量:" label-width="140px" prop="num">
-                <el-input v-model="dengform.num" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="监督机构名称:"
-                label-width="140px"
-                prop="supervisoryOrg"
-              >
-                <el-input
-                  v-model="dengform.supervisoryOrg"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="定期检验名称:"
-                label-width="140px"
-                prop="checkName"
-              >
-                <el-input
-                  v-model="dengform.checkName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="使用单位名称:"
-                label-width="140px"
-                prop="useName"
-              >
-                <el-input
-                  v-model="dengform.useName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="使用单位地址:"
-                label-width="140px"
-                prop="address"
-              >
-                <el-input
-                  v-model="dengform.address"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="投入使用日期:"
-                label-width="140px"
-                prop="initData"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="dengform.initData"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.initData" autocomplete="off"></!-->
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="固定电话:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.telPhone"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="安全管理员:"
-                label-width="140px"
-                prop="useSafe"
-              >
-                <el-input
-                  v-model="dengform.useSafe"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="登记机关:"
-                label-width="140px"
-                prop="certification"
-              >
-                <el-input
-                  v-model="dengform.certification"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="登记日期:"
-                label-width="140px"
-                prop="cretificationDate"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="dengform.cretificationDate"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.cretificationDate" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="8"></el-col>
-            <el-col :span="8">&nbsp;</el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <h3 style="border-bottom: 1px solid #ece8e8; padding-bottom: 5px">
-              手动填写下载word文档
-            </h3>
-          </el-col>
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="统一社会信用代码:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.creditCode"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="产品名称:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.productName"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-
-            <el-col :span="8">
-              <el-form-item
-                label="设备使用地点:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.sbAddress"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="邮政编码:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input v-model="dengform.post" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="联系电话:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.mobilePhone"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="使用单位填表人员:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.userFill"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="日期:"
-                label-width="140px"
-                prop="cretificationDate"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="日期"
-                  v-model="dengform.fillDate"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.cretificationDate" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="使用单位安全管理人员:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.userSafePerson"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item
-                label="日期2:"
-                label-width="140px"
-                prop="verifyDate"
-              >
-                <el-date-picker
-                  type="date"
-                  placeholder="日期2"
-                  v-model="dengform.verifyDate"
-                  style="width: 100%"
-                ></el-date-picker>
-                <!-- <el-input v-model="form.cretificationDate" autocomplete="off"></el-input> -->
-              </el-form-item>
-            </el-col>
-          </el-col>
-
-          <el-col :span="24">
-            <el-col :span="8">
-              <el-form-item
-                label="登记机关管理人员:"
-                label-width="140px"
-                prop="telPhone"
-              >
-                <el-input
-                  v-model="dengform.certificationPerson"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">&nbsp;</el-col>
-
-            <el-col :span="8">&nbsp;</el-col>
-          </el-col>
-        </el-form>
-        <p style="text-align: center" slot="footer" class="dialog-footer">
-          <el-button @click="dengdialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="savencftpget()">保存文件</el-button>
-          <el-button type="primary" @click="ncftpget()"
-            >下载world文档</el-button
-          >
-        </p>
-      </el-dialog>
+ 
     </el-card>
     <!-- 读气瓶标签 -->
     <el-dialog title="气瓶信息" :visible.sync="dialogFormVisible">
@@ -1575,7 +678,6 @@ export default {
     },
     //读员工卡标签
     Readstaff() {
-      this.dialogFormVisible3 = true;
       var passworda = "ABCDEABBCC12";
       var passwordb = "CCABEAAAEE21";
       //读标签
@@ -1595,29 +697,32 @@ export default {
         this.wsr.ws_set_mode(this.wsr.MODE_TIMEOUT, 300);
         this.wsr.ws_beep(port);
         rt = this.wsr.ws_getCardNo_String(port, obj);
+        console.log(rt);//0
         if (rt < 0) {
-          layui.use("layer", function () {
-            var layer = layui.layer;
-            layer.msg("请放入卡片");
-          });
+          this.$message.error("请放入卡片");
           return rt;
         }
         rt = this.wsr.ws_loadKey(port, key, 0);
+        console.log(rt);//1
         rt = this.wsr.ws_loadKey(port, key2, 1);
+        console.log(rt);//1
         this.wsr.client_datatype = 1;
         obj.data = "";
         rt = this.wsr.ws_readBlock(port, 12 * 4, obj);
-        if (rt < 0) this.$message.error("卡片类型错误");
+        console.log(rt);
+        if (rt < 0) {this.$message.error("卡片类型错误");
         // layui.use('layer', function () {
         //     var layer = layui.layer;
         //     layer.msg('卡片类型错误');
         // });
-        else {
+        }else {
+          this.dialogFormVisible3 = true;
           rt = this.wsr.ws_readBlock(port, 48, obj);
           var str = obj.data;
+          console.log(str);
           var num1 = parseInt(str.substring(0, 4), 16);
           var num2 = parseInt(str.substring(4, 8), 16);
-          var num3 = hexCharCodeToStr(str.substring(8, 24));
+          var num3 = this.hexCharCodeToStr(str.substring(8, 24));
           var date1 = parseInt(str.substring(24, 28), 16);
           var date2 = parseInt(str.substring(28, 30), 16);
           var date3 = parseInt(str.substring(30, 32), 16);
@@ -1653,6 +758,26 @@ export default {
       } finally {
         this.wsr.ws_closePort(port);
       }
+    },
+    
+    hexCharCodeToStr(hexCharCodeStr) {
+      var trimedStr = hexCharCodeStr.trim();
+      var rawStr =
+        trimedStr.substr(0, 2).toLowerCase() === "0x"
+          ? trimedStr.substr(2)
+          : trimedStr;
+      var len = rawStr.length;
+      if (len % 2 !== 0) {
+        alert("Illegal Format ASCII Code!");
+        return "";
+      }
+      var curCharCode;
+      var resultStr = [];
+      for (var i = 0; i < len; i = i + 2) {
+        curCharCode = parseInt(rawStr.substr(i, 2), 16); // ASCII Code Value
+        resultStr.push(String.fromCharCode(curCharCode));
+      }
+      return resultStr.join("");
     },
     // // 清除发卡标签
     ClearLabel() {
@@ -1818,7 +943,7 @@ export default {
           let date = res.data.date;
           rt = this.wsr.ws_openPort(port);
           rt = this.wsr.ws_verifyKey(port, key, 0);
-          //  rt = this.wsr.ws_writeBlock(port, 4, checkCode)
+           rt = this.wsr.ws_writeBlock(port, 4, checkCode)
           rt = this.wsr.ws_writeBlock(port, 8, regId);
           if (regId.length > 32) {
             regId = regId.substring(32);
@@ -1960,7 +1085,7 @@ export default {
                   console.log(regId);
                   rt = this.wsr.ws_openPort(port);
                   rt = this.wsr.ws_verifyKey(port, key, 0);
-                  //  rt = this.wsr.ws_writeBlock(port, 4, checkCode)
+                   rt = this.wsr.ws_writeBlock(port, 4, checkCode)
                   rt = this.wsr.ws_writeBlock(port, 8, regId);
                   if (regId.length > 32) {
                     regId = regId.substring(32);
@@ -2046,6 +1171,7 @@ export default {
                   );
                   if (rt > 0) {
                     this.$message.success("发卡成功");
+                    this.getUserlist();
                   }
                 });
             } else {
@@ -2058,7 +1184,7 @@ export default {
     },
     //读气瓶标签
     Readcard() {
-      this.dialogFormVisible = true;
+      
       var passworda = "837210987622";
       var passwordb = "12BBADDAEA11";
       //读标签
@@ -2080,8 +1206,7 @@ export default {
         this.wsr.ws_beep(port);
         rt = this.wsr.ws_getCardNo_String(port, obj);
         if (rt < 0) {
-          this.$message.warning("请放入卡片");
-
+          this.$message.error("请放入卡片");
           return rt;
         }
         rt = this.wsr.ws_loadKey(port, key, 0);
@@ -2093,12 +1218,16 @@ export default {
         rt = this.wsr.ws_readBlock(port, 13 * 4, obj);
         if (rt < 0) this.$message.error("卡片类型错误");
         else {
+          this.dialogFormVisible = true;
           rt = this.wsr.ws_readBlock(port, 8, obj);
           var regId = obj.data;
+          console.log(obj.data);
           rt = this.wsr.ws_readBlock(port, 12, obj);
           var gasId = obj.data;
+          console.log(obj.data);
           rt = this.wsr.ws_readBlock(port, 16, obj);
           var unit = obj.data;
+          console.log(obj.data);
           rt = this.wsr.ws_readBlock(port, 17, obj);
           var unit2 = obj.data;
           var unitName = unit + unit2;
@@ -2116,61 +1245,32 @@ export default {
           rt = this.wsr.ws_readBlock(port, 52, obj);
           var car = obj.data;
           var lableNo = parseInt(car.substring(0, 8), 16);
+          
           var date1 = parseInt(car.substring(8, 12), 16);
           var date2 = parseInt(car.substring(12, 14), 16);
           var date3 = parseInt(car.substring(14, 16), 16);
           var checkDate = date1 + "-" + date2 + "-" + date3;
           var carNumber = this.hexCharCodeToStr(car.substring(16, 32));
+          console.log(carNumber);
           this.ReadcardFrom = {
             regId: regId,
             gasId: gasId,
             unitName: unitName,
             time: time,
-            status: time,
+            status: status,
             lableNo: lableNo,
-            checkDate: lableNo,
-            carNumber: lableNo,
+            checkDate: checkDate,
+            carNumber: carNumber,
           };
-          //表单赋值
-          // layui.use('form', function () {
-          //     var form = layui.form;
-          //     form.val('example', {
-          //         "regId": regId
-          //         , "gasId": gasId
-          //         , "unitName": unitName
-          //         , "time": time
-          //         , "status": status
-          //         , "lableNo": lableNo
-          //         , "checkDate": checkDate
-          //         , "carNumber": carNumber.substring(2, 8)
-          //     })
-
-          // })
-          // layui.use('layer', function () {
-          //     var layer = layui.layer;
-          //     layer.open({
-          //         type: 1,
-          //         title: '气瓶信息',
-          //         shade: 0,
-          //         area: ['580px', '650px'],
-          //         content: $('#formCard')
-          //     });
-          // });
         }
       } finally {
         this.wsr.ws_closePort(port);
       }
     },
+    
+    
     Editusertion() {
       this.getUserlist();
-    },
-    tableRowClassName({ row, rowIndex }) {
-      if (rowIndex === 1) {
-        return "warning-row";
-      } else if (rowIndex === 3) {
-        return "success-row";
-      }
-      return "";
     },
     // 保存文件
     savencftpget() {
@@ -2443,7 +1543,7 @@ export default {
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
       const res = await this.$http.get(
-        `/car/cylinder-card/findPage?regId=${this.regId}&pageSize=${this.pageSize}&currpage=${this.page}&carNum=${this.carNum}&gasId=${this.gasId}&isCard=${this.isCard}`
+        `/car/cylinder-card/findPage?regId=${this.regId}&rows=${this.pageSize}&page=${this.currpage}&carNum=${this.carNum}&gasId=${this.gasId}&isCard=${this.isCard}`
       );
       console.log(res);
 
@@ -2459,13 +1559,13 @@ export default {
       // 回到第一页
       this.currpage = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
-      this.getUserlist();
+      this.searchUser();
     },
     handleCurrentChange(val) {
       //页码改变时
       console.log(`当前页: ${val}`);
       this.currpage = val;
-      this.getUserlist();
+      this.searchUser();
     },
     async getUserlist() {
       //需要授权的API ，必须在请求头中使用Authorization 字段token令牌
@@ -2479,7 +1579,7 @@ export default {
       console.log(decode);
       this.token = decode.authorities;
       const res = await this.$http.get(
-        `/car/cylinder-card/findPage?unitName=${this.unitName}&rows=${this.pageSize}&page=${this.currpage}`
+        `/car/cylinder-card/findPage?regId=${this.regId}&rows=${this.pageSize}&page=${this.currpage}&carNum=${this.carNum}&gasId=${this.gasId}&isCard=${this.isCard}`
       );
       console.log(res);
 
@@ -2503,10 +1603,6 @@ export default {
     },
   },
 
-  //   弹框组件
-  // components:{
-  //    Message
-  // }
 };
 </script>
 <style scoped>

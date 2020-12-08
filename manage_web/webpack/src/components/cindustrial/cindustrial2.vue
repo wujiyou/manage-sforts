@@ -2384,7 +2384,7 @@ export default {
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
       const res = await this.$http.get(
-        `/carCylinder/selectAll?pageSize=${this.pageSize}&currPage=${this.page}&gasId=${this.gasId}&carNum=${this.carNum}&reportStatus=${this.reportStatus}&appId=${this.appId}&makeInfo=${this.buildingUser}`
+        `/carCylinder/selectAll?pageSize=${this.pageSize}&currPage=${this.currPage}&gasId=${this.gasId}&carNum=${this.carNum}&reportStatus=${this.reportStatus}&appId=${this.appId}&makeInfo=${this.buildingUser}`
       );
       console.log(res);
       this.userlist = res.data.data.list;
@@ -2399,17 +2399,17 @@ export default {
       // 回到第一页
       this.currPage = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
-      this.getUserlist();
+      this.searchUser();
     },
     handleCurrentChange(val) {
       //页码改变时
       console.log(`当前页: ${val}`);
       this.currPage = val;
-      this.getUserlist();
+      this.searchUser();
     },
     async getUserlist() {
       const res = await this.$http.get(
-        `/carCylinder/selectAll?pageSize=${this.pageSize}&currPage=${this.currPage}&gasId=${this.query}`
+        `/carCylinder/selectAll?pageSize=${this.pageSize}&currPage=${this.currPage}&gasId=${this.gasId}&carNum=${this.carNum}&reportStatus=${this.reportStatus}&appId=${this.appId}&makeInfo=${this.buildingUser}`
       );
       console.log(res);
       this.userlist = res.data.data.list;

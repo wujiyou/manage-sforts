@@ -585,13 +585,13 @@ export default {
       // 回到第一页
       // this.currPage = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
-      this.getUserlist();
+      this.searchUser();
     },
     handleCurrentChange(val) {
       //页码改变时
       console.log(`当前页: ${val}`);
       this.currPage = val;
-      this.getUserlist();
+      this.searchUser();
     },
     async getUserlist() {
       const res = await this.$http.get(

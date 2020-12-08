@@ -3494,7 +3494,7 @@ export default {
       // const AUTH_TOKEN = localStorage.getItem("token");
       // this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
       const res = await this.$http.get(
-        `/doucument/select/all?unitName=${this.unitName}&pageSize=${this.pageSize}&currpage=${this.currpage}`
+        `/doucument/select/all?unitName=${this.unitName}&pageSize=${this.pageSize}&currpage=${this.currpage}&certification=${this.certification}&regId=${this.regId}&sheng=${this.sheng}`
       );
 
       this.userlist = res.data.data.list;

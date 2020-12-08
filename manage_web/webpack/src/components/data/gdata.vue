@@ -12,7 +12,7 @@
     <div class="bodyCon">
       <div class="leftCon">
         <div class="left_12">
-          <img src="../../../static/images/bg18.png"  />
+          <img src="../../../static/images/bg18.png" :style="imgNone" />
         </div>
         <div class="left_11">
           <img src="../../../static/images/bg16.png" :style="imga" />
@@ -280,6 +280,7 @@ export default {
       citCode: "",
       proAdress: "",
       imga: "",
+      imgNone:"",
       date: new Date(),
       zhongbu: "",
       gaodug: "",
@@ -729,6 +730,7 @@ export default {
       this.gaodu =
         "padding:2% !important;font-size:12px !important; transform: scale(0.8);";
       this.imga = "height:60% !important;width:5% !important;";
+      this.imgNone = "display:none";
       this.zhongbu = "margin-bottom:0%;";
       this.gaodug = "margin-bottom:0%";
       this.title = "font-size:22px";
@@ -1661,9 +1663,9 @@ export default {
 /* .center_22{
   margin-top: -7%;
 } */
-.center_221 {
+/* .center_221 {
   margin-right: 8%;
-}
+} */
 .center_441 {
   /* flex: 0.5; */
 

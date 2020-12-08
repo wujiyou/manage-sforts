@@ -82,7 +82,7 @@
           <el-table-column type="index" label="序号" width="50"></el-table-column>
           <el-table-column prop="username" label="操作人" width="120" show-overflow-tooltip></el-table-column>
 
-          <el-table-column type="level" label="日志等级" width="120" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="level" label="日志等级" width="120" show-overflow-tooltip></el-table-column>
           <el-table-column prop="operationType" label="操作类型" width="120" show-overflow-tooltip></el-table-column>
 
           <el-table-column prop="createdTime" label="操作时间" show-overflow-tooltip>

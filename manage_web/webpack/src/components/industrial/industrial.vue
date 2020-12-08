@@ -3374,7 +3374,7 @@ export default {
       // const AUTH_TOKEN = localStorage.getItem("token");
       // this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
       const res = await this.$http.get(
-        `/doucument/industrial/select/all?unitName=${this.unitName}&pageSize=${this.pageSize}&currpage=${this.currpage}`
+        `/doucument/industrial/select/all?unitName=${this.unitName}&pageSize=${this.pageSize}&currpage=${this.currpage}&certification=${this.certification}&regId=${this.regId}&sheng=${this.sheng}&medium=${this.medium}`
       );
       console.log(res);
 

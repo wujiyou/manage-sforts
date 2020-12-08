@@ -4,15 +4,6 @@
       <my-bread level1="气瓶登记" level2="车用气瓶信息查看"></my-bread>
     </div>
     <el-card class="box-card" style="margin:20px 20px 0 20px;">
-      <!-- 面包屑 -->
-      <!-- <el-breadcrumb separator-class="el-icon-arrow-right " class="arrow_right">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>
-        <a href="/">用户管理</a>
-      </el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-      </el-breadcrumb>-->
-
       <!--搜索  -->
       <el-row>
         <el-col :span="24">
@@ -124,60 +115,6 @@
               <p v-if="userlist[scope.$index].useStatus==3">报废</p>
             </template>
           </el-table-column>
-
-          <!-- <el-table-column label="用户状态">
-          <template slot-scope="socpe">-->
-          <!-- 找到开关@change="changeMgStatus(scope.row)" -->
-          <!-- changeMgStatus  发送put请求 -->
-          <!-- users/:uId/state/:type uid用户id -->
-          <!-- <el-switch
-              @change="changeMgStatus(socpe.row)"
-              v-model="socpe.row.mg_state"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-            ></el-switch>
-          </template>
-          </el-table-column>-->
-          <!-- 表格操作 -->
-          <!-- <el-table-column prop="address" width="150" label="操 作">
-            <template slot-scope="scope">
-             
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="修改信息"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="primary"
-                  size="mini"
-                  title="修改"
-                  plain
-                  icon="el-icon-edit"
-                  @click="showEdituser(scope.row)"
-                  circle
-                ></el-button>
-              </el-tooltip>
-              
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="删除"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="danger"
-                  size="mini"
-                  plain
-                  icon="el-icon-delete"
-                  circle
-                  @click="showDeleUserMsgBox(scope.row.id)"
-                ></el-button>
-              </el-tooltip>
-            </template>
-          </el-table-column>-->
         </el-table>
       </template>
       <el-pagination
@@ -918,7 +855,7 @@ export default {
       console.log(this.ids);
       this.$http
         .get(
-          `/carCylinder/select?id=${this.ids}&pageSize=${this.pageSize}&currPage=${this.currPage}`
+          `/carCylinder/select?id=${this.ids}&pageSize=${this.pageSize}&currPage=${this.currPage}&gasId=${this.gasId}`
         )
         .then((res) => {
           console.log(res);

@@ -43,6 +43,7 @@
                 placeholder="加气时间"
                 value-format="yyyy-MM-dd"
                 v-model="createTime"
+                @input="searchUser()"
               ></el-date-picker>
             </el-col>
 
@@ -283,13 +284,23 @@ export default {
     },
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
+      if(this.createTime==null || this.createTime2==null) this.createTime='',this.createTime2=''
       const res = await this.$http.get(
         `/public/gas/privilege/list?pageSize=${this.pageSize}&currPage=${this.page}&gunId=${this.gunId}&gasId=${this.gasId}&createTime=${this.createTime}&createTime2=${this.createTime2}`
       );
+       console.log(res);
+      if(res.data.data==null){
+        this.$message({
+          type: "warning",
+          message: res.data.msg
+        });
+      }else{
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
-      console.log(this.userlist);
       this.currPage = 1;
+      }
+     
+     
     },
     //分页功能
     handleSizeChange(val) {

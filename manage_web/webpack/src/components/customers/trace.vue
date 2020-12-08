@@ -158,7 +158,14 @@ export default {
       currPage: 1,
       page: 1,
       pageSize: 10,
-      //生成一个文档
+      
+      // dialogFormVisibleEdit: false,
+      // dialogFormVisibleRoleshow: false,
+    };
+  },
+
+  methods: {
+    //生成一个文档
       async downtemplatee() {
         if (this.userlist.length === 0) {
           this.$message({
@@ -234,13 +241,7 @@ export default {
               this.loadingbuttext = "生成一个excel文档";
             });
         }
-      }
-      // dialogFormVisibleEdit: false,
-      // dialogFormVisibleRoleshow: false,
-    };
-  },
-
-  methods: {
+      },
     //清空搜索框搜索数据 点击清楚按钮清除数据重新发送请求
     loadUserList() {
       if (this.createTime === null || this.createTime2 == null) {

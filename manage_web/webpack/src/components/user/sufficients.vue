@@ -180,7 +180,7 @@
           <el-col :span="24">
             <el-col :span="8">
               <el-form-item  label="员工编号(10-255):" label-width="140px" prop="code">
-                <el-input v-model="form.code" autocomplete="off"></el-input>
+                <el-input maxlength="3" v-model="form.code" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -241,8 +241,6 @@
             </el-col>
           </el-col>
           <el-col :span="24">
-            
-
             <el-col :span="8">
               <el-form-item class="red_s" label="换证日期:" label-width="140px" prop="noDateEnd">
                 <el-date-picker
@@ -377,14 +375,7 @@
             </el-col>
           </el-col>
           <el-col :span="24">
-            <el-col :span="8">
-              <!-- <el-form-item label="标签号:" label-width="140px" prop="labelNo">
-                <el-input v-model="form.labelNo" autocomplete="off"></el-input>
-              </el-form-item>-->
-              <el-form-item label="Id:" hidden label-width="140px" prop="unitId">
-                <el-input v-model="form.unitId" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
+        
 
             <el-col :span="8">
               <el-form-item label="换证日期:" label-width="140px" prop="noDateEnd">
@@ -395,6 +386,11 @@
                   value-format="yyyy-MM-dd"
                   style="width: 100%;"
                 ></el-date-picker>
+              </el-form-item>
+            </el-col>
+                <el-col :span="8">
+              <el-form-item label="Id:" hidden label-width="140px" prop="unitId">
+                <el-input v-model="form.unitId" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
           </el-col>
@@ -464,6 +460,11 @@ export default {
         unitId: ""
       },
       rulses: {
+        code: [
+          { required: true, message: "请输入编号", trigger: "blur" },
+          { min:2, max: 3, message: "请输入2~3位数编号", trigger: "blur" },
+          { pattern: /^((?:[1-9]\d|(1\d\d)|(2([0-4]\d|5[0-5]))))$/, message: "请输入正确的编号" },
+        ],
         vestingName: [
           { required: true, message: "公司名称不能为空", trigger: "blur" }
         ],
@@ -635,7 +636,7 @@ export default {
             type: "error",
             message: "请填写内容再试"
           });
-          this.dialogFormVisibleAdd = true;
+          this.dialogFormVisibleEdit = true;
         }
       });
     },

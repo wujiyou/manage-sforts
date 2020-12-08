@@ -11,6 +11,10 @@ import house from "@/components/user/house"
 import notice from "@/components/user/notice"
 // 移动充装记录
 import mobilerecord from "@/components/role/mobilerecord"
+
+//挂牌车头数据
+import guapaichetou from "@/components/role/guapaichetou"
+
 // 检验变更记录
 import verify from "@/components/role/verify"
 // 移动充装扫描记录
@@ -128,6 +132,10 @@ import registration5 from "@/components/registration/registration5"
 
 //单位登记里的配送单位
 import registration6 from "@/components/registration/registration6"
+
+//单位登记里的其他单位
+import registration8 from "@/components/registration/registration8"
+
 
 //单位登记里的配送单位的价格显示
 import price from "@/components/registration/price"
@@ -427,6 +435,11 @@ const router = new Router({
           component: hardware
         },
         {
+          path: "/query/guapai/fill",
+          name: "guapaichetou",
+          component: guapaichetou
+        },
+        {
           path: "/change",
           name: "change",
           component: change
@@ -510,6 +523,11 @@ const router = new Router({
           path: "/unit/unit",
           name: "registration7",
           component: registration7
+        },
+        {
+          path: "/unit/qitait",
+          name: "registration8",
+          component: registration8
         },
         {
           path: "/unit/unit/supervise",
@@ -775,8 +793,6 @@ export default router
 // from 当前的路由配置
 
 // login  home -> login to就是login from就是home路由配置
-
-
 
 // app.use((req,res,next)=>{
 //   // req.body()

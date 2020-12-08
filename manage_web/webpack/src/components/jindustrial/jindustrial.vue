@@ -127,9 +127,6 @@
 
         <el-table-column prop="address" width="320" label="操 作">
           <template slot-scope="scope">
-            <!-- size 调整按钮大小 -->
-            <!-- 编辑 -->
-
             <el-tooltip
               class="item"
               effect="dark"
@@ -1928,7 +1925,7 @@ export default {
     },
     async getUserlist() {
       const res = await this.$http.get(
-        `/cylinder/industrial/select?pageSize=${this.pageSize}&currpage=${this.currpage}&gasId=${this.gasId}`
+        `/cylinder/industrial/select?pageSize=${this.pageSize}&currpage=${this.currpage}&gasId=${this.gasId}&reportStatus=${this.reportStatus}&appId=${this.appId}&medium=${this.medium}&buildingUser=${this.buildingUser}`
       );
       console.log(res);
       this.userlist = res.data.data.list;

@@ -9,7 +9,7 @@
     <div class="box">
       <div>
         <h1 class="hh1">欢迎登录智能监管平台</h1>
-        <!-- <h1 class="hh1">欢迎登录智能监管平台</h1> -->
+        <!-- <h1 class="hh1">欢迎登录兰州新区智能监管平台</h1> -->
         <el-form
           :label-position="labelPosition"
           label-width="185px"
@@ -96,7 +96,6 @@ export default {
       formdata: {
         username: "",
         password: "",
-        // grant_type: "password",
         seccode: "",
       },
       form: {
@@ -151,8 +150,7 @@ export default {
       }
     },
     async surece() {
-      // /store/{code}
-      // this.code=this.sqm
+      
       const res = await this.$http.get(`/license/store/${this.form.code}`);
       console.log(res);
       if (res.data.success == true) {
@@ -422,7 +420,6 @@ export default {
   font-size: 28px;
   font-weight: 600;
   text-align: center;
-  /* background: linear-gradient(to right, #00afff, #295aaa); */
   color: white !important;
   -webkit-background-clip: text;
   color: transparent;
@@ -467,7 +464,6 @@ export default {
 .input_margin {
   position: relative;
   margin-top: 25px;
-  /* margin: 0 auto; */
   margin-left: -18%;
   color: white;
   width: 500px;

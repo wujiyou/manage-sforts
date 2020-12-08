@@ -6,15 +6,10 @@ MyHttpSERVER.install =(Vue) =>{
 
 
    axios.defaults.baseURL ="http://39.98.74.46:8081"  
-
-  // 涛哥  http://192.168.0.110:8081
-  //     125.75.8.53
-  // 阿里云  http://39.98.74.46:8081
-  // 服务器 http://192.168.0.7:8081
-  // 刘洋  http://192.168.0.230:8081
-  // 老贺 http://192.168.0.111:8081
-  // 付裕 http://192.168.0.115:8081
-  // 陈宇 http://192.168.0.126:8081
+   // 江西南昌市36.133.18.119
+   // 兰州新区125.75.8.53
+   // 192.168.0.201
+   // 阿里云  http://39.98.74.46:8081
 
 
     // 添加请求拦截器
@@ -26,7 +21,7 @@ axios.interceptors.request.use(function (config) {
       const AUTH_TOKEN = sessionStorage.getItem("access_token");
       // if(AUTH_TOKEN != null){
       //   var ass = AUTH_TOKEN.substring(7,AUTH_TOKEN.length)
-      // }
+      // } 
       config.headers["Authorization"] = AUTH_TOKEN;
    }
    return config;

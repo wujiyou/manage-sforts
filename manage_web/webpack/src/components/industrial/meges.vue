@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div style="background:white;width:99.1%;padding-left:15px">
+    <div style="background: white; width: 99.1%; padding-left: 15px">
       <my-bread level1="气瓶登记" level2="工业气瓶信息查看"></my-bread>
     </div>
-    <el-card class="box-card" style="margin:20px 20px 0 20px;">
+    <el-card class="box-card" style="margin: 20px 20px 0 20px">
       <!-- 面包屑 -->
       <!-- <el-breadcrumb separator-class="el-icon-arrow-right " class="arrow_right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -16,13 +16,21 @@
       <!--搜索  -->
       <el-row>
         <el-col :span="24">
-          <h5 style="border-bottom:1px solid #ece8e8;padding-bottom:15px;padding-left:15px">查询信息</h5>
+          <h5
+            style="
+              border-bottom: 1px solid #ece8e8;
+              padding-bottom: 15px;
+              padding-left: 15px;
+            "
+          >
+            查询信息
+          </h5>
         </el-col>
-        <el-col style="padding-left:15px" :span="22">
+        <el-col style="padding-left: 15px" :span="22">
           <el-col :span="4">
             <el-input
               size="small"
-              style=" width: 100%;"
+              style="width: 100%"
               @clear="loadUserList()"
               clearable
               class="input-serach"
@@ -30,10 +38,10 @@
               v-model="gasId"
             ></el-input>
           </el-col>
-          <el-col style="margin-left:15px" :span="3">
+          <el-col style="margin-left: 15px" :span="3">
             <el-select
               size="small"
-              style=" width: 100%;"
+              style="width: 100%"
               @clear="loadUserList()"
               clearable
               v-model="medium"
@@ -47,29 +55,41 @@
               ></el-option>
             </el-select>
           </el-col>
-          <el-col style="margin-left:30px" :span="4">
+          <el-col style="margin-left: 30px" :span="4">
             <el-button
               size="small"
-              style=" width: 100%;"
+              style="width: 100%"
               @click="searchUser()"
               class="el_button"
               icon="el-icon-search"
-            >搜索</el-button>
+              >搜索</el-button
+            >
           </el-col>
         </el-col>
       </el-row>
 
       <el-col :span="24">
         <p
-          style="width:100%;height:1px;background:rgb(236, 232, 232);margin:20px 0px 0px 0px;z-index:999"
+          style="
+            width: 100%;
+            height: 1px;
+            background: rgb(236, 232, 232);
+            margin: 20px 0px 0px 0px;
+            z-index: 999;
+          "
         ></p>
       </el-col>
 
-      <el-col style="margin-bottom:5px;margin-top:5px" :span="24">
+      <el-col style="margin-bottom: 5px; margin-top: 5px" :span="24">
         <el-col :span="11">&nbsp;</el-col>
         <el-col :span="2">
-          <el-button type="success" style="font-size:13px" size="small" @click="showAddUserDia()">
-            <i style="padding-right:10px" class="el-icon-plus"></i>新&nbsp;增
+          <el-button
+            type="success"
+            style="font-size: 13px"
+            size="small"
+            @click="showAddUserDia()"
+          >
+            <i style="padding-right: 10px" class="el-icon-plus"></i>新&nbsp;增
           </el-button>
         </el-col>
 
@@ -77,22 +97,23 @@
           <el-button
             type="info"
             size="small"
-            style="margin-left:-5px; font-size:13px;"
+            style="margin-left: -5px; font-size: 13px"
             @click="firstAddUserDia()"
           >
-            <i style="padding-right:10px" class="el-icon-top"></i>返回上一界面
+            <i style="padding-right: 10px" class="el-icon-top"></i>返回上一界面
           </el-button>
         </el-col>
 
-        <el-col :span="2" style="margin-left:20px;">
+        <el-col :span="2" style="margin-left: 20px">
           <el-button
             type="success"
             plain
             size="small"
-            style="font-size:13px;"
+            style="font-size: 13px"
             @click="downTemplate()"
           >
-            <i style="padding-right:10px" class="el-icon-download"></i>下载excel模板
+            <i style="padding-right: 10px" class="el-icon-download"></i
+            >下载excel模板
           </el-button>
         </el-col>
 
@@ -108,11 +129,11 @@
           </el-button>
         </el-col> -->
 
-        <el-col :span="2" style="margin-left:45px;">
+        <el-col :span="2" style="margin-left: 45px">
           <el-upload
             class="upload-demo"
             action
-            style="padding-left:20px;"
+            style="padding-left: 20px"
             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -124,69 +145,129 @@
               type="success"
               plain
               size="small"
-              style="font-size:13px"
+              style="font-size: 13px"
               @click="handlePreview"
             >
-              <i style="padding-right:10px" class="el-icon-upload2"></i>点击数据批量上传
+              <i style="padding-right: 10px" class="el-icon-upload2"></i
+              >点击数据批量上传
             </el-button>
             <!-- <div slot="tip" class="el-upload__tip">只能上传Excel文件</div> -->
           </el-upload>
         </el-col>
-        <el-col :span="2" style="margin-left:80px">
+        <el-col :span="2" style="margin-left: 80px">
           <el-button
             type="danger"
             size="small"
             plain
             icon="el-icon-delete"
-            style="font-size:13px;"
+            style="font-size: 13px"
             @click="showDeleUserMsgBox"
-          >批量删除</el-button>
+            >批量删除</el-button
+          >
         </el-col>
       </el-col>
       <!-- 表格 -->
       <template>
         <el-table
-          :row-style="{height:'40px'}"
-          :cell-style="{padding:'0px'}"
+          :row-style="{ height: '40px' }"
+          :cell-style="{ padding: '0px' }"
           border
           :data="userlist"
-          style="width: 100%;margin:20px 0px;padding-bottom:40px"
+          style="width: 100%; margin: 20px 0px; padding-bottom: 40px"
           @selection-change="handleCurrentChanges"
         >
           <el-table-column type="selection" width="50"></el-table-column>
-          <el-table-column type="index" label="序号" width="50" show-overflow-tooltip>
+          <el-table-column
+            type="index"
+            label="序号"
+            width="50"
+            show-overflow-tooltip
+          >
             <template slot-scope="socpe">
-              <p style="cursor:pointer;" @click="showEdituser(socpe.row)">{{socpe.$index+1}}</p>
+              <p style="cursor: pointer" @click="showEdituser(socpe.row)">
+                {{ socpe.$index + 1 }}
+              </p>
             </template>
           </el-table-column>
           <!-- <el-table-column type="index" label="序号" width="70"></el-table-column> -->
-          <el-table-column show-overflow-tooltip prop="equType" label="设备类型"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="medium" label="充装介质"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="gasId" label="产品编号"></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="equType"
+            label="设备类型"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="medium"
+            label="充装介质"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="gasId"
+            label="产品编号"
+          ></el-table-column>
 
-          <el-table-column show-overflow-tooltip prop="makeInfo" label="生产(制造)单位"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="makeData" label="制造年月">
-            <template slot-scope="socpe">{{socpe.row.makeData | fmtdate}}</template>
+          <el-table-column
+            show-overflow-tooltip
+            prop="makeInfo"
+            label="生产(制造)单位"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="makeData"
+            label="制造年月"
+          >
+            <template slot-scope="socpe">{{
+              socpe.row.makeData | fmtdate
+            }}</template>
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="pressure" label="公称工作压力（MPa）"></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="pressure"
+            label="公称工作压力（MPa）"
+          ></el-table-column>
 
-          <el-table-column show-overflow-tooltip prop="volume" label="容积（L）"></el-table-column>
-          <el-table-column show-overflow-tooltip prop="checkData" label="最近一次检验日期">
-            <template slot-scope="socpe">{{socpe.row.checkData | fmtdate}}</template>
+          <el-table-column
+            show-overflow-tooltip
+            prop="volume"
+            label="容积（L）"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="checkData"
+            label="最近一次检验日期"
+          >
+            <template slot-scope="socpe">{{
+              socpe.row.checkData | fmtdate
+            }}</template>
           </el-table-column>
 
-          <el-table-column show-overflow-tooltip prop="nextCheckData" label="下次检验日期">
-            <template slot-scope="socpe">{{socpe.row.nextCheckData | fmtdate}}</template>
+          <el-table-column
+            show-overflow-tooltip
+            prop="nextCheckData"
+            label="下次检验日期"
+          >
+            <template slot-scope="socpe">{{
+              socpe.row.nextCheckData | fmtdate
+            }}</template>
           </el-table-column>
 
-          <el-table-column show-overflow-tooltip prop="selfId" label="单位内编号"></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="selfId"
+            label="单位内编号"
+          ></el-table-column>
 
-          <el-table-column show-overflow-tooltip prop="changeStatus" label="变更或者停用情况" width="100">
+          <el-table-column
+            show-overflow-tooltip
+            prop="changeStatus"
+            label="变更或者停用情况"
+            width="100"
+          >
             <template slot-scope="scope">
-              <p v-if="userlist[scope.$index].changeStatus==1">新增</p>
-              <p v-if="userlist[scope.$index].changeStatus==0">停用</p>
-              <p v-if="userlist[scope.$index].changeStatus==2">注销</p>
-              <p v-if="userlist[scope.$index].changeStatus==3">报废</p>
+              <p v-if="userlist[scope.$index].changeStatus == 1">新增</p>
+              <p v-if="userlist[scope.$index].changeStatus == 0">停用</p>
+              <p v-if="userlist[scope.$index].changeStatus == 2">注销</p>
+              <p v-if="userlist[scope.$index].changeStatus == 3">报废</p>
             </template>
           </el-table-column>
 
@@ -207,12 +288,16 @@
         </el-table>
       </template>
       <el-pagination
-        style="padding:5px 15px 15px 15px;display:flex; justify-content: flex-end;"
+        style="
+          padding: 5px 15px 15px 15px;
+          display: flex;
+          justify-content: flex-end;
+        "
         background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currpage"
-        :page-sizes="[10,15,20,25,30]"
+        :page-sizes="[10, 15, 20, 25, 30]"
         :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -220,12 +305,21 @@
 
       <!-- 对话框 -->
       <!-- 添加对话框 -->
-      <el-dialog width="60%" title="添加信息" :visible.sync="dialogFormVisibleAdd">
+      <el-dialog
+        width="60%"
+        title="添加信息"
+        :visible.sync="dialogFormVisibleAdd"
+      >
         <el-form :model="form" :rules="rules" ref="form">
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" label="设备类型" label-width="140px" prop="equType">
-                <el-select style=" width: 100%" v-model="form.equType">
+              <el-form-item
+                class="red_s"
+                label="设备类型"
+                label-width="140px"
+                prop="equType"
+              >
+                <el-select style="width: 100%" v-model="form.equType">
                   <el-option
                     v-for="item in selects1"
                     :key="item.id"
@@ -238,68 +332,105 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="red_s" label="充装介质" label-width="140px" prop="medium">
-                <el-select style=" width: 100%" v-model="form.medium">
+              <el-form-item
+                class="red_s"
+                label="充装介质"
+                label-width="140px"
+                prop="medium"
+              >
+              <el-input v-model="form.medium" autocomplete="off"></el-input>
+                <!-- <el-select style="width: 100%" v-model="form.medium">
                   <el-option
                     v-for="item in selects2"
                     :key="item.id"
                     :label="item.orders"
                     :value="item.orders"
                   ></el-option>
-                </el-select>
+                </el-select> -->
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" disabled label="产品编号" label-width="140px" prop="gasId">
+              <el-form-item
+                class="red_s"
+                disabled
+                label="产品编号"
+                label-width="140px"
+                prop="gasId"
+              >
                 <el-input v-model="form.gasId" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="red_s" label="制造年月" label-width="140px" prop="makeData">
+              <el-form-item
+                class="red_s"
+                label="制造年月"
+                label-width="140px"
+                prop="makeData"
+              >
                 <!-- <el-input v-model="form.makeData" autocomplete="off"></el-input> -->
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="form.makeData"
-                  style="width: 100%;"
+                  style="width: 100%"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" label="公称工作压力（MPa）" label-width="140px" prop="pressure">
+              <el-form-item
+                class="red_s"
+                label="公称工作压力（MPa）"
+                label-width="140px"
+                prop="pressure"
+              >
                 <el-input v-model="form.pressure" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="red_s" label="容积（L）" label-width="140px" prop="volume">
+              <el-form-item
+                class="red_s"
+                label="容积（L）"
+                label-width="140px"
+                prop="volume"
+              >
                 <el-input v-model="form.volume" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" label="最近一次检验日期" label-width="140px" prop="checkData">
+              <el-form-item
+                class="red_s"
+                label="最近一次检验日期"
+                label-width="140px"
+                prop="checkData"
+              >
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="form.checkData"
-                  style="width: 100%;"
+                  style="width: 100%"
                   :picker-options="pickerOptions0"
                 ></el-date-picker>
                 <!-- <el-input v-model="form.checkData" autocomplete="off"></el-input> -->
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="red_s" label="下次检验日期" label-width="140px" prop="nextCheckData">
+              <el-form-item
+                class="red_s"
+                label="下次检验日期"
+                label-width="140px"
+                prop="nextCheckData"
+              >
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="form.nextCheckData"
-                  style="width: 100%;"
+                  style="width: 100%"
                   :picker-options="pickerOptions1"
                 ></el-date-picker>
                 <!-- <el-input v-model="form.nextCheckData" autocomplete="off"></el-input> -->
@@ -308,20 +439,29 @@
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" label="单位内编号" label-width="140px">
+              <el-form-item
+                class="red_s"
+                label="单位内编号"
+                label-width="140px"
+              >
                 <el-input v-model="form.selfId" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="red_s" label="变更或者停用情况" label-width="140px" prop="changeStatus">
+              <el-form-item
+                class="red_s"
+                label="变更或者停用情况"
+                label-width="140px"
+                prop="changeStatus"
+              >
                 <el-select
-                  style="width: 100%;"
+                  style="width: 100%"
                   :validate-event="false"
                   v-model="form.changeStatus"
                   placeholder="请选择"
                 >
                   <el-option
-                    v-for=" (item,i) in options"
+                    v-for="(item, i) in options"
                     :key="i"
                     :label="item.name"
                     :value="item.id"
@@ -332,7 +472,12 @@
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item class="red_s" label="生产(制造)单位" label-width="140px" prop="makeInfo">
+              <el-form-item
+                class="red_s"
+                label="生产(制造)单位"
+                label-width="140px"
+                prop="makeInfo"
+              >
                 <el-input v-model="form.makeInfo" autocomplete="off"></el-input>
                 <!-- <el-select style=" width: 100%" v-model="form.makeInfo">
                   <el-option
@@ -345,16 +490,22 @@
               </el-form-item>
             </el-col>
             <el-col :span="9">
-              <el-form-item class="red_s" label="设备代码:" label-width="140px" prop="sbCode">
+              <el-form-item
+                class="red_s"
+                label="设备代码:"
+                label-width="140px"
+                prop="sbCode"
+              >
                 <el-input v-model="form.sbCode" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="3">
               <el-button
-                style="margin-left:5px;margin-right:5px;widht:60px;"
+                style="margin-left: 5px; margin-right: 5px; widht: 60px"
                 @click="Regtion()"
                 type="primary"
-              >生成设备代码</el-button>
+                >生成设备代码</el-button
+              >
             </el-col>
           </el-col>
         </el-form>
@@ -365,7 +516,11 @@
       </el-dialog>
 
       <!-- 编辑对话框 -->
-      <el-dialog width="60%" title="修改信息" :visible.sync="dialogFormVisibleEdit">
+      <el-dialog
+        width="60%"
+        title="修改信息"
+        :visible.sync="dialogFormVisibleEdit"
+      >
         <el-form :model="editUserForm" :rules="rules">
           <el-form-item hidden label="ID" label-width="140px" prop="equType">
             <el-input v-model="editUserForm.id" autocomplete="off"></el-input>
@@ -375,7 +530,7 @@
           <el-col :span="24">
             <el-col :span="12">
               <el-form-item label="设备类型" label-width="140px" prop="equType">
-                <el-select style=" width: 100%" v-model="editUserForm.equType">
+                <el-select style="width: 100%" v-model="editUserForm.equType">
                   <el-option
                     v-for="item in selects1"
                     :key="item.id"
@@ -389,14 +544,15 @@
             </el-col>
             <el-col :span="12">
               <el-form-item label="充装介质" label-width="140px" prop="medium">
-                <el-select style=" width: 100%" v-model="editUserForm.medium">
+                <el-input v-model="editUserForm.medium" autocomplete="off"></el-input>
+                <!-- <el-select style="width: 100%" v-model="editUserForm.medium">
                   <el-option
                     v-for="item in selects2"
                     :key="item.id"
                     :label="item.orders"
                     :value="item.orders"
                   ></el-option>
-                </el-select>
+                </el-select> -->
               </el-form-item>
             </el-col>
           </el-col>
@@ -404,53 +560,78 @@
           <el-col :span="24">
             <el-col :span="12">
               <el-form-item label="产品编号" label-width="140px" prop="gasId">
-                <el-input v-model="editUserForm.gasId" autocomplete="off"></el-input>
+                <el-input
+                  v-model="editUserForm.gasId"
+                  autocomplete="off"
+                ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="制造年月" label-width="140px" prop="makeData">
+              <el-form-item
+                label="制造年月"
+                label-width="140px"
+                prop="makeData"
+              >
                 <!-- <el-input v-model="form.makeData" autocomplete="off"></el-input> -->
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="editUserForm.makeData"
-                  style="width: 100%;"
+                  style="width: 100%"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item label="公称工作压力（MPa）" label-width="140px" prop="pressure">
-                <el-input v-model="editUserForm.pressure" autocomplete="off"></el-input>
+              <el-form-item
+                label="公称工作压力（MPa）"
+                label-width="140px"
+                prop="pressure"
+              >
+                <el-input
+                  v-model="editUserForm.pressure"
+                  autocomplete="off"
+                ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="容积（L）" label-width="140px" prop="volume">
-                <el-input v-model="editUserForm.volume" autocomplete="off"></el-input>
+                <el-input
+                  v-model="editUserForm.volume"
+                  autocomplete="off"
+                ></el-input>
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item label="最近一次检验日期" label-width="140px" prop="checkData">
+              <el-form-item
+                label="最近一次检验日期"
+                label-width="140px"
+                prop="checkData"
+              >
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="editUserForm.checkData"
-                  style="width: 100%;"
+                  style="width: 100%"
                   :picker-options="pickerOptions2"
                 ></el-date-picker>
                 <!-- <el-input v-model="form.checkData" autocomplete="off"></el-input> -->
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="下次检验日期" label-width="140px" prop="nextCheckData">
+              <el-form-item
+                label="下次检验日期"
+                label-width="140px"
+                prop="nextCheckData"
+              >
                 <el-date-picker
                   type="date"
                   placeholder="选择日期"
                   v-model="editUserForm.nextCheckData"
-                  style="width: 100%;"
+                  style="width: 100%"
                   :picker-options="pickerOptions3"
                 ></el-date-picker>
                 <!-- <el-input v-model="form.nextCheckData" autocomplete="off"></el-input> -->
@@ -460,18 +641,25 @@
           <el-col :span="24">
             <el-col :span="12">
               <el-form-item label="单位内编号" label-width="140px">
-                <el-input v-model="editUserForm.selfId" autocomplete="off"></el-input>
+                <el-input
+                  v-model="editUserForm.selfId"
+                  autocomplete="off"
+                ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="变更或者停用情况" label-width="140px" prop="changeStatus">
+              <el-form-item
+                label="变更或者停用情况"
+                label-width="140px"
+                prop="changeStatus"
+              >
                 <el-select
                   :validate-event="false"
                   v-model="editUserForm.changeStatus"
                   placeholder="请选择"
                 >
                   <el-option
-                    v-for=" (item,i) in options"
+                    v-for="(item, i) in options"
                     :key="i"
                     :label="item.name"
                     :value="item.id"
@@ -482,8 +670,12 @@
           </el-col>
           <el-col :span="24">
             <el-col :span="12">
-              <el-form-item label="生产(制造)单位" label-width="140px" prop="makeInfo">
-                <el-select style=" width: 100%" v-model="editUserForm.makeInfo">
+              <el-form-item
+                label="生产(制造)单位"
+                label-width="140px"
+                prop="makeInfo"
+              >
+                <el-select style="width: 100%" v-model="editUserForm.makeInfo">
                   <el-option
                     v-for="item in selecttion"
                     :key="item.id"
@@ -495,15 +687,19 @@
             </el-col>
             <el-col :span="9">
               <el-form-item label="设备代码:" label-width="140px" prop="sbCode">
-                <el-input v-model="editUserForm.sbCode" autocomplete="off"></el-input>
+                <el-input
+                  v-model="editUserForm.sbCode"
+                  autocomplete="off"
+                ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="3">
               <el-button
-                style="margin-left:5px;margin-right:5px;widht:60px;"
+                style="margin-left: 5px; margin-right: 5px; widht: 60px"
                 @click="Regtions()"
                 type="primary"
-              >生成设备代码</el-button>
+                >生成设备代码</el-button
+              >
             </el-col>
           </el-col>
         </el-form>
@@ -1128,7 +1324,7 @@ export default {
       console.log(this.ids);
       this.$http
         .get(
-          `/cylinder/industrial/selectIdByAll?id=${this.ids}&pageSize=${this.pageSize}&currpage=${this.currpage}`
+          `/cylinder/industrial/selectIdByAll?id=${this.ids}&pageSize=${this.pageSize}&currpage=${this.currpage}&gasId=${this.gasId}&medium=${this.medium}`
         )
         .then((res) => {
           console.log(res);

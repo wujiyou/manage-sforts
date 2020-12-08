@@ -13,7 +13,7 @@
     <div class="bodyCon" :style="doPos">
       <div class="leftCon">
         <div class="left_12">
-          <img src="../../../static/images/bg18.png"  />
+          <img src="../../../static/images/bg18.png" :style="imgNone"/>
         </div>
         <div class="left_1">
           <div>
@@ -168,6 +168,7 @@ export default {
       date: new Date(),
       sty: "width:100%;height:42vh",
       doFontSize: "",
+      imgNone:"",
       doPos: "",
       samllFont: "",
       provincesAdress: "",
@@ -642,6 +643,7 @@ export default {
       this.y = "50%";
       this.barChartSty = "width: 100%;height:18vh;";
       this.doFontSize = "font-size:12px !important";
+      this.imgNone = "display:none !important";
       this.doPos = "top:-6% !important";
       this.allShow=true
       // this.samllFont="font-size: 8px; transform:scale(0.9);"
@@ -1256,6 +1258,7 @@ export default {
 }
 .left_12{
   margin-top: -4vh;
+  
 }
 .left_12 > img {
   width: 100%;

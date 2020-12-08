@@ -716,8 +716,10 @@ export default {
     async function2(val) {
       this.code = val;
       console.log(this.code);
-
-      const res = await this.$http.get(`/chinese/city/${this.code}`);
+      this.areaCode=""
+      this.cityCode=""
+     
+       const res = await this.$http.get(`/chinese/city/${this.code}`);
       console.log(res);
       this.level = res.data.data;
       // console.log(val);
@@ -734,6 +736,8 @@ export default {
     // 区域
     async function1(val) {
       this.Id = val;
+      this.areaCode=""
+     
       const res = await this.$http.get(`/chinese/area/${this.Id}`);
       console.log(res);
       this.levels = res.data.data;

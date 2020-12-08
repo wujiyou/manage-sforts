@@ -42,6 +42,7 @@
                 type="date"
                 placeholder="加气时间"
                 value-format="yyyy-MM-dd"
+                @input="searchUser()"
                 v-model="createTime"
               ></el-date-picker>
             </el-col>
@@ -156,7 +157,14 @@ export default {
       page: 1,
       pageSize: 10,
       //生成一个文档
-      async downtemplatee() {
+      
+      // dialogFormVisibleEdit: false,
+      // dialogFormVisibleRoleshow: false,
+    };
+  },
+
+  methods: {
+    async downtemplatee() {
         console.log(this.userlist);
         if (this.userlist.length === 0) {
           this.$message({
@@ -232,13 +240,7 @@ export default {
               this.loadingbuttext = "生成一个excel文档";
             });
         }
-      }
-      // dialogFormVisibleEdit: false,
-      // dialogFormVisibleRoleshow: false,
-    };
-  },
-
-  methods: {
+      },
     dateFormat: function(row, column) {
       var date = row[column.property];
       if (date === null) {
@@ -258,9 +260,10 @@ export default {
       const res = await this.$http.get(
         `/public/gas/CarFilling/CarFillingPaging?pageSize=${this.pageSize}&currPage=${this.page}&gunId=${this.gunId}&gasId=${this.gasId}&createTime=${this.createTime}&endTime=${this.createTime2}`
       );
+      console.log(res);
       this.userlist = res.data.data.list;
       this.total = res.data.data.totalCount;
-      console.log(this.userlist);
+      // console.log(this.userlist);
       this.currPage = 1;
     },
     //分页功能

@@ -29,6 +29,7 @@
           <el-col :span="4">
             <el-select
               filterable
+              clearable
               @clear="loadUserList()"
               @change="getUserlist()"
               v-model="unitId"

@@ -1647,10 +1647,25 @@ export default {
     async function2(val) {
       // this.editUserForm.provinceCode = sessionStorage.getItem("province"); //省code
       this.code = val;
+      this.cityCode=""
+      this.areaCode=""
+      this.form.cityCode=""
+      this.form.areaCode=""
       console.log(this.code);
       const res = await this.$http.get(`/chinese/city/${this.code}`);
       console.log(res);
       this.CityId = res.data.data;
+      this.getUserlist();
+    },
+
+      // 区域
+    async function1(val) {
+      this.Id = val;
+      this.areaCode=""
+      this.form.areaCode=""
+      const res = await this.$http.get(`/chinese/area/${this.Id}`);
+      console.log(res);
+      this.AreaId = res.data.data;
       this.getUserlist();
     },
 
@@ -1673,14 +1688,7 @@ export default {
       this.AreaId = res.data.data;
       this.getUserlist();
     },
-    // 区域
-    async function1(val) {
-      this.Id = val;
-      const res = await this.$http.get(`/chinese/area/${this.Id}`);
-      console.log(res);
-      this.AreaId = res.data.data;
-      this.getUserlist();
-    },
+  
     // 新增app分页数据查询
     async appuser() {
       const res = await this.$http.get(`/chinese/address`);
@@ -2303,7 +2311,7 @@ export default {
     // 添加用户显示对话框
     showAddUserDia() {
       // 先点编辑 再点添加 打开表单清空表单
-      this.form = {};
+      // this.form = {};
       this.form.provinceCode = this.provinceCode; //省搜索name
       this.form.cityCode = this.cityCode;
       this.form.type = 0;

@@ -24,7 +24,7 @@
 
             <el-upload
               class="avatar-uploader"
-              action="http://125.75.8.53:8081/user/image"
+              action="http://39.98.74.46:8081/user/image"
               :on-preview="handlePreview"
               :headers="headers"
               :on-remove="handleRemove"

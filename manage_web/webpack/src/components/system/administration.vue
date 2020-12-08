@@ -12,16 +12,16 @@
         <el-col style="padding-left:15px" :span="22">
           <el-col :span="4">
             <el-date-picker
-              size="small"
-              style="width: 100%;"
-              type="date"
-              placeholder="操作时间"
-              @clear="loadUserList()"
-              clearable
-              v-model="createdTime"
-              @input="searchUser()"
-            ></el-date-picker>
+                size="small"
+                style="width: 100%"
+                type="date"
+                placeholder="加气时间"
+                value-format="yyyy-MM-dd"
+                v-model="createdTime"
+                @input="searchUser()"
+              ></el-date-picker>
           </el-col>
+          <!-- createdTime -->
           <el-col :span="4" style="margin-left:30px">
             <el-select
               size="small"
@@ -94,12 +94,12 @@
               <p style="cursor:pointer;" @click="showEdituser(socpe.row)">{{socpe.$index+1}}</p>
             </template>
           </el-table-column>
-          <!-- <el-table-column show-overflow-tooltip prop="code" label="角色编号"></el-table-column> -->
+          <el-table-column prop="name" label="角色名称" show-overflow-tooltip></el-table-column>
           <el-table-column prop="createdTime" label="创建时间" show-overflow-tooltip>
             <template slot-scope="socpe">{{socpe.row.createdTime | fmtdate}}</template>
           </el-table-column>
           <el-table-column prop="type" label="角色类型" :formatter="ifendcase" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="name" label="角色名称" show-overflow-tooltip></el-table-column>
+          
           <el-table-column prop="note" label="备注" show-overflow-tooltip></el-table-column>
           <!-- 表格操作 -->
           <el-table-column prop="address" width="150" label="操 作">
@@ -141,25 +141,6 @@
                   circle
                 ></el-button>
               </el-tooltip>
-
-              <!-- 删除 -->
-
-              <!-- <el-tooltip
-                class="item"
-                effect="dark"
-                content="删除角色"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="danger"
-                  size="mini"
-                  plain
-                  icon="el-icon-delete"
-                  circle
-                  @click="showDeleUserMsgBox(scope.row.id)"
-                ></el-button>
-              </el-tooltip>-->
             </template>
           </el-table-column>
         </el-table>
@@ -187,12 +168,6 @@
       >
         <el-form :model="form" :rules="rules" ref="form">
           <el-col :span="24">
-            <!-- <el-col :span="10">
-              <el-form-item label="角色编号" label-width="100px" prop="code">
-                <el-input v-model="form.code" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>-->
-            <!-- <el-col :span="2">&nbsp;</el-col> -->
             <el-col :span="10">
               <el-form-item label="角色类型" class="red_s" label-width="100px" prop="type">
                 <el-select width="100%" v-model="form.type" placeholder="请选择">
@@ -282,16 +257,6 @@
         :visible.sync="dialogFormVisiblesetrole"
       >
         <p style="margin:0px 20px 20px 20px">角色名称：{{this.jiaoname}}</p>
-        <!-- <el-col :span="24">
-          <el-form :model="editUserForm">
-            <el-col :span="24">
-              <el-form-item label="角色名称" label-width="100px" prop="name">
-                <el-input v-model="editUserForm.name" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-form>
-        </el-col>-->
-
         <!-- 树形结构 -->
         <!-- 
         data数据源
@@ -372,13 +337,6 @@ export default {
       // dialogFormVisibleRoleshow: false,
       //添加用户的表单的数据
       rules: {
-        // code: [
-        //   { required: true, message: "角色编号不能为空", trigger: "blur" }
-        // ],
-        // name: [
-        //   { required: true, message: "角色编号不能为空", trigger: "blur" }
-        // ],
-
         type: [
           { required: true, message: "角色类型不能为空", trigger: "blur" },
         ],
@@ -639,38 +597,6 @@ export default {
       //user其实就是scope.row也就是userlist
     },
 
-    //删除用户 打开消息盒子
-    // showDeleUserMsgBox(userId) {
-    //   console.log(userId);
-    //   // 提示框 点击确定走.then
-    //   // 点取消 走.catch
-    //   this.$confirm("删除用户, 是否继续?", "提示", {
-    //     confirmButtonText: "确定",
-    //     cancelButtonText: "取消",
-    //     type: "warning"
-    //   })
-    //     .then(async () => {
-    //       // 注意async的位置，最近的位置
-    //       // 发送删除请求:id:用户id
-    //       // 1.data中找userId
-    //       // 2.把userID以showDeleUserMsgBox参数形式传进来
-    //       const res = await this.$http.delete(`/role/${userId}`);
-    //       console.log(res);
-    //       if (res.data.code == 0) {
-    //         this.$message.success(res.data.msg);
-    //       } else {
-    //         this.$message.error("删除失败");
-    //       }
-    //       this.getUserlist();
-    //     })
-    //     .catch(() => {
-    //       this.$message({
-    //         type: "info",
-    //         message: "已取消删除"
-    //       });
-    //     });
-    // },
-
     //   添加用户发送请求
     async AddUser() {
       this.$refs.form.validate(async (valid) => {
@@ -703,16 +629,10 @@ export default {
 
       // console.log(res);
     },
-    // 查询单位名称
-    // async selectedDia() {
-    //   const res = await this.$http.get(`/unit/findAll`);
-    //   // console.log(res);
-    //   this.options = res.data.data;
-    // },
+    
     // 添加用户显示对话框
     async showAddUserDia() {
       // 先点编辑 再点添加 打开表单清空表单
-
       this.dialogFormVisibleAdd = true;
     },
     //清空搜索框搜索数据 点击清楚按钮清除数据重新发送请求
@@ -722,27 +642,36 @@ export default {
     },
     // 搜索功能
     async searchUser() {
-      const dering = this.createdTime;
-      if (dering == "") {
-        this.getUserlist();
-      } else if (dering === null) {
-        this.createdTime = "";
-        this.getUserlist();
-      } else {
-        const resDate =
-          dering.getFullYear() +
-          "-" +
-          (dering.getMonth() + 1) +
-          "-" +
-          dering.getDate();
+      // const dering = this.createdTime;
+      // if (dering == "") {
+      //   this.getUserlist();
+      // } else if (dering === null) {
+      //   this.createdTime = "";
+      //   this.getUserlist();
+      // } else {
+        // const resDate =
+        //   dering.getFullYear() +
+        //   "-" +
+        //   (dering.getMonth() + 1) +
+        //   "-" +
+        //   dering.getDate();
+        if(this.createdTime==null) this.createdTime='',this.page=1
         const res = await this.$http.get(
-          `/role/findPage?page=${this.page}&rows=${this.rows}&createdTime=${resDate}&type=${this.type}`
+          `/role/findPage?page=${this.page}&rows=${this.rows}&createdTime=${this.createdTime}&type=${this.type}`
         );
         console.log(res);
-        this.userlist = res.data.data.list;
-        this.total = res.data.data.totalCount;
-        this.page = 1;
-      }
+        if(res.data.data==null){
+          this.$message({
+          type: "warning",
+          message: res.data.msg
+        });
+        }else{
+          this.userlist = res.data.data.list;
+          this.total = res.data.data.totalCount;
+          this.page = 1;
+        }
+        
+      // }
     },
     //分页功能
     handleSizeChange(val) {
@@ -752,21 +681,15 @@ export default {
       // 回到第一页
       this.page = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
-      this.searchUser();
+      this.getUserlist();
     },
     handleCurrentChange(val) {
       //页码改变时
       console.log(`当前页: ${val}`);
       this.page = val;
-      this.searchUser();
+      this.getUserlist();
     },
     async getUserlist() {
-      //需要授权的API ，必须在请求头中使用Authorization 字段token令牌
-      //pagenum当前页面   pagesize每页显示条数
-      //接口文档中 除了登录接口之外的所有请求都需要进行授权，设置请求头
-      //找axios中关于请求头的代码  写在了http.js中
-      // const AUTH_TOKEN = localStorage.getItem("token");
-      // this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
       const res = await this.$http.get(
         `/role/findPage?page=${this.page}&rows=${this.rows}&createdTime=${this.createdTime}&type=${this.type}`
       );
@@ -777,7 +700,6 @@ export default {
   },
   created() {
     this.getUserlist();
-    // this.selectedDia();
   },
 };
 </script>

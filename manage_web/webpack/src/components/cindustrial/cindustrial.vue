@@ -267,56 +267,10 @@
                   circle
                 ></el-button>
               </el-tooltip>
-              <!-- 编辑 -->
-
-              <!-- <el-tooltip
-                class="item"
-                effect="dark"
-                content="修改信息"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="primary"
-                  size="mini"
-                  title="修改"
-                  plain
-                  icon="el-icon-edit"
-                  @click="showEdituser(scope.row)"
-                  circle
-                ></el-button>
-              </el-tooltip>-->
-              <!-- 删除 -->
-
-              <!-- <el-tooltip
-                class="item"
-                effect="dark"
-                content="删除"
-                :enterable="false"
-                placement="top"
-              >
-                <el-button
-                  type="danger"
-                  size="mini"
-                  plain
-                  icon="el-icon-delete"
-                  circle
-                  @click="showDeleUserMsgBox(scope.row.id)"
-                ></el-button>
-              </el-tooltip>-->
             </template>
           </el-table-column>
         </el-table>
       </template>
-      <!-- 4.分页 -->
-      <!-- 》该接口支持分页 url参数中有pagenum，pagesize
-          @size-change 每页显示条数变化时触发
-          @current-change当前页改变时触发
-          :current-page 设置当前页是第几页
-           :page-sizes="[5, 10, 15, 20]"每页多少条的数据组
-           :page-size="5"设置显示多少条
-           :total="400"分页总数
-      -->
       <el-pagination
         style="padding:5px 15px 15px 15px;display:flex; justify-content: flex-end;"
         background
@@ -4210,13 +4164,12 @@ export default {
           }
         }
         
-        const user = Object.assign(this.form, this.last);
         if (valid) {
           if (this.tyPe == 1) {
             this.form.sheng = sessionStorage.getItem("provinceCode"); //省code
             this.form.zoneId = sessionStorage.getItem("cityCode"); //市code
             this.form.zoneName = sessionStorage.getItem("country");
-            const res = await this.$http.post(`/carDoucument/save`, user);
+            const res = await this.$http.post(`/carDoucument/save`, this.form);
             if (res.data.code === 200) {
               // 回到第一页展示
               //this.pagenum = 1;
@@ -4241,7 +4194,7 @@ export default {
           } else if (this.tyPe == 2) {
             this.form.sheng = sessionStorage.getItem("provinceCode"); //省code
             this.form.zoneId = sessionStorage.getItem("cityCode"); //市code
-            const res = await this.$http.post(`/carDoucument/save`, user);
+            const res = await this.$http.post(`/carDoucument/save`, this.form);
             if (res.data.code === 200) {
               // 回到第一页展示
               //this.pagenum = 1;
@@ -4265,7 +4218,7 @@ export default {
             }
           } else if (this.tyPe == 3) {
             this.form.sheng = sessionStorage.getItem("provinceCode"); //省code
-            const res = await this.$http.post(`/carDoucument/save`, user);
+            const res = await this.$http.post(`/carDoucument/save`, this.form);
             if (res.data.code === 200) {
               // 回到第一页展示
               //this.pagenum = 1;
@@ -4288,7 +4241,7 @@ export default {
               });
             }
           } else {
-            const res = await this.$http.post(`/carDoucument/save`, user);
+            const res = await this.$http.post(`/carDoucument/save`, this.form);
             if (res.data.code === 200) {
               // 回到第一页展示
               //this.pagenum = 1;
@@ -4429,7 +4382,7 @@ export default {
     // 搜索用户 给搜索框绑定query v-model="query"
     async searchUser() {
       const res = await this.$http.get(
-        `/carDoucument/select?carNum=${this.carNum}&pageSize=${this.pageSize}&currPage=1&regId=${this.regId}&unit=${this.unitName}&useName=${this.useName}&certification=${this.certification}&zoneName=${this.zoneName}`
+        `/carDoucument/select?carNum=${this.carNum}&pageSize=${this.pageSize}&currPage=${this.currPage}&regId=${this.regId}&unit=${this.unitName}&useName=${this.useName}&certification=${this.certification}&zoneName=${this.zoneName}`
       );
       console.log(res);
       if (res.data.code == 1) {
@@ -4440,7 +4393,8 @@ export default {
         this.unitName = "";
       } else {
         this.userlist = res.data.data.list;
-        this.total = res.data.data.totalCount;
+        this.total = res.data.data.totalCount; 
+        this.page = 1;
       }
       // console.log("aaaaaa");
     },
@@ -4452,13 +4406,13 @@ export default {
       // 回到第一页
       this.currPage = 1;
       // 希望当页条数改变时 从第一页开始显示 this.pagenum = 1 -》currPage=1?
-      this.getUserlist();
+      this.searchUser();
     },
     handleCurrentChange(val) {
       //页码改变时
       console.log(`当前页: ${val}`);
       this.currPage = val;
-      this.getUserlist();
+      this.searchUser();
     },
     async getUserlist() {
       const ress = await this.$http.get(`/chinese/address`);
@@ -4527,7 +4481,7 @@ export default {
       // const AUTH_TOKEN = localStorage.getItem("token");
       // this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
       const res = await this.$http.get(
-        `/carDoucument/select?pageSize=${this.pageSize}&currPage=${this.currPage}`
+        `/carDoucument/select?carNum=${this.carNum}&pageSize=${this.pageSize}&currPage=${this.currPage}&regId=${this.regId}&unit=${this.unitName}&useName=${this.useName}&certification=${this.certification}&zoneName=${this.zoneName}`
       );
       console.log(res);
       this.userlist = res.data.data.list;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="background:white;width:99.1%;padding-left:15px">
-      <my-bread level1="预警管理" level2="系统监管" level3="系统操作日志"></my-bread>
+      <my-bread level1="系统管理" level2="系统操作日志"></my-bread>
     </div>
     <el-card class="box-card" style="margin:20px 20px 0 20px;">
       <!--搜索-->
@@ -74,7 +74,7 @@
           <el-table-column type="index" label="序号" width="50"></el-table-column>
           <el-table-column prop="username" label="操作人" width="120" show-overflow-tooltip></el-table-column>
 
-          <el-table-column type="level" label="日志等级" width="120" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="level" label="日志等级" width="120" show-overflow-tooltip></el-table-column>
           <el-table-column prop="operationType" label="操作类型" width="120" show-overflow-tooltip></el-table-column>
           <el-table-column prop="createdTime" label="操作时间" show-overflow-tooltip>
             <template slot-scope="socpe">{{socpe.row.createdTime | fmtdate}}</template>
